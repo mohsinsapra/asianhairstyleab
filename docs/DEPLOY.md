@@ -19,21 +19,23 @@ The repo is already pushed. Turn Pages on:
 
 ---
 
-## 2. Point the domain at Cloudflare
+## 2. Point the domain at Cloudflare  ← **this is the only thing still blocking go-live**
 
-Your domain is registered at **Loopia** and currently has no DNS set up, which makes this clean.
-
-**In Cloudflare:**
-
-1. **Add a site** → type `asianhairstyleab.se` → choose the **Free** plan.
-2. Cloudflare will show you two nameservers, something like
-   `xxx.ns.cloudflare.com` and `yyy.ns.cloudflare.com`. Copy both.
+The zone is already added to Cloudflare (status: *pending*). It stays pending until the
+nameservers move, and nothing on the domain resolves until then — website or API.
 
 **In Loopia:**
 
-3. Log in → find `asianhairstyleab.se` → **Namnservrar** (nameservers).
-4. Choose the option for *"Använd egna namnservrar"* / your own nameservers.
-5. Replace whatever is there with the two Cloudflare ones. Save.
+1. Log in → find `asianhairstyleab.se` → **Namnservrar** (nameservers).
+2. Choose *"Använd egna namnservrar"* / use your own nameservers.
+3. Replace `ns1.loopia.se` and `ns2.loopia.se` with exactly these two:
+
+```
+itzel.ns.cloudflare.com
+trevor.ns.cloudflare.com
+```
+
+4. Save.
 
 Then wait. `.se` usually updates within an hour or two, sometimes up to 24. Cloudflare emails you when the domain goes active.
 
@@ -74,32 +76,29 @@ You now get Cloudflare's caching, analytics and DDoS protection. If anything loo
 
 ---
 
-## 4. The booking API
+## 4. The booking API — **done**
+
+Already deployed on 2026-09-19:
+
+- D1 database `ahab-bookings` created in region **EEUR**, schema applied to the remote database.
+- Worker `ahab-booking-api` deployed, with both a `workers.dev` URL and the
+  `api.asianhairstyleab.se` custom domain attached.
+- Verified end to end against production: availability, a real booking write, and the
+  capacity rules. The test row was deleted afterwards; the table is empty.
+
+| | |
+|---|---|
+| Live now | `https://ahab-booking-api.mohsin-sapra.workers.dev` |
+| After the nameserver switch | `https://api.asianhairstyleab.se` |
+
+The site is pointed at the custom domain, so bookings start working the moment step 2 lands.
+Nothing more to do here.
+
+To redeploy after changing anything in `worker/`:
 
 ```bash
-cd worker
-npm install
-npx wrangler login              # opens a browser once
-npx wrangler d1 create ahab-bookings
+cd worker && npx wrangler deploy
 ```
-
-That last command prints a `database_id`. Paste it into `worker/wrangler.toml`, replacing the placeholder. Then:
-
-```bash
-npx wrangler d1 execute ahab-bookings --remote --file=./schema.sql
-npx wrangler deploy
-```
-
-The `routes` block in `wrangler.toml` makes Cloudflare create the `api.asianhairstyleab.se` DNS record for you — there's nothing to add by hand.
-
-Check it:
-
-```bash
-curl https://api.asianhairstyleab.se/api/health
-# {"ok":true,"services":29}
-```
-
-The website is already pointed at this URL, so bookings start working the moment this responds.
 
 ---
 
