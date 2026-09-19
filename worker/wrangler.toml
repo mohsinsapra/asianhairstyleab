@@ -1,0 +1,26 @@
+name = "ahab-booking-api"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+# Custom domain. Cloudflare creates the api.* DNS record for you when you deploy,
+# so there is nothing to add by hand in the DNS tab for this one.
+routes = [
+  { pattern = "api.asianhairstyleab.se", custom_domain = true }
+]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ahab-bookings"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[observability]
+enabled = true
+
+# Secrets are never stored here. Set them with:
+#   npx wrangler secret put RESEND_API_KEY
+#   npx wrangler secret put SALON_EMAIL
+#   npx wrangler secret put MAIL_FROM
+#   npx wrangler secret put GOOGLE_CALENDAR_ID
+#   npx wrangler secret put GOOGLE_SA_EMAIL
+#   npx wrangler secret put GOOGLE_SA_PRIVATE_KEY

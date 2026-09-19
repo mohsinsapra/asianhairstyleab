@@ -1,0 +1,11 @@
+{
+  "name": "asianhairstyleab",
+  "private": true,
+  "type": "module",
+  "description": "Website and booking system for Asian Hairstyle AB, Brandbergen",
+  "scripts": {
+    "test": "node test/time.test.mjs && node test/availability.test.mjs && npm run check-sync",
+    "check-sync": "node test/check-sync.mjs",
+    "serve": "python3 -m http.server 8788 --directory site"
+  }
+}

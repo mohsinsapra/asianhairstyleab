@@ -1,0 +1,17 @@
+{
+  "name": "ahab-booking-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create ahab-bookings",
+    "db:init": "wrangler d1 execute ahab-bookings --remote --file=./schema.sql",
+    "db:init:local": "wrangler d1 execute ahab-bookings --local --file=./schema.sql",
+    "db:bookings": "wrangler d1 execute ahab-bookings --remote --command \"SELECT date, start_min, service_name, customer_name, customer_phone FROM bookings WHERE status='confirmed' ORDER BY start_utc DESC LIMIT 30\"",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.20.0"
+  }
+}
