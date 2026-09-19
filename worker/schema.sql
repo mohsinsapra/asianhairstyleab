@@ -31,3 +31,11 @@ CREATE INDEX IF NOT EXISTS idx_bookings_date   ON bookings (date, status);
 CREATE INDEX IF NOT EXISTS idx_bookings_start  ON bookings (start_utc);
 -- Used by the rate limiter.
 CREATE INDEX IF NOT EXISTS idx_bookings_client ON bookings (client_hash, created_at);
+
+-- Small key/value cache. Currently used to hold the Google reviews response so
+-- the Places API is called once a day rather than once a visitor.
+CREATE TABLE IF NOT EXISTS cache (
+  key        TEXT PRIMARY KEY,
+  value      TEXT NOT NULL,
+  fetched_at TEXT NOT NULL
+);

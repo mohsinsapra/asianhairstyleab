@@ -3,6 +3,7 @@ import { SERVICES, CATEGORIES } from './services.js';
 import { initLang, setLang, getLang, t, sname, locale, STRINGS } from './i18n.js';
 import { toDateStr, toMinutes, dayOfWeek, hhmm, humanDuration } from './time.js';
 import { initBooking, startWith, relabel } from './booking.js';
+import { REVIEWS as MANUAL_REVIEWS } from './reviews.js';
 
 const $ = (sel) => document.querySelector(sel);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -17,6 +18,7 @@ function boot() {
   buildChips();
   buildJsonLd();
   initBooking();
+  loadReviews();
   applyLang();
 
   $('#year').textContent = new Date().getFullYear();
@@ -73,6 +75,7 @@ function applyLang() {
 
   renderStatus();
   renderHours();
+  if (reviewData.length) renderReviews();
   renderServices();
   buildChips();
   buildMarquee();
@@ -183,6 +186,88 @@ function renderServices() {
   list.querySelectorAll('[data-book]').forEach((b) => {
     b.onclick = () => startWith(b.dataset.book);
   });
+}
+
+
+// ------------------------------------------------------------------ reviews
+
+let reviewData = [];
+
+/**
+ * Live reviews from Google via the Worker, falling back to whatever real
+ * reviews are pasted into reviews.js. If neither yields anything the section
+ * stays hidden — an empty slider is worse than no slider, and nothing here
+ * ever invents review text.
+ */
+async function loadReviews() {
+  let fetched = null;
+  if (BUSINESS.apiBase) {
+    try {
+      const res = await fetch(`${BUSINESS.apiBase}/api/reviews`, { headers: { accept: 'application/json' } });
+      if (res.ok) fetched = await res.json();
+    } catch (err) {
+      console.warn('reviews unavailable:', err.message);
+    }
+  }
+
+  reviewData = (fetched?.reviews?.length ? fetched.reviews : MANUAL_REVIEWS) || [];
+  if (fetched?.mapsUri) $('#reviewsLink').href = fetched.mapsUri;
+
+  const section = $('#omdomen');
+  if (!reviewData.length) { section.hidden = true; return; }
+  section.hidden = false;
+  renderReviews();
+  wireSlider();
+}
+
+function renderReviews() {
+  const track = $('#revTrack');
+  track.innerHTML = reviewData.map((r) => {
+    const stars = '★'.repeat(Math.round(r.rating || 5)) + '☆'.repeat(5 - Math.round(r.rating || 5));
+    const initial = (r.author || '?').trim().charAt(0).toUpperCase();
+    const avatar = r.photo
+      ? `<img class="rev__avatar" src="${esc(r.photo)}" alt="" loading="lazy" referrerpolicy="no-referrer">`
+      : `<div class="rev__avatar" aria-hidden="true">${esc(initial)}</div>`;
+    return `
+      <article class="rev">
+        <div class="rev__stars" aria-label="${r.rating || 5}/5">${stars}</div>
+        <p class="rev__text">${esc(r.text)}</p>
+        <div class="rev__by">
+          ${avatar}
+          <div class="rev__who">
+            <strong>${esc(r.author)}</strong>
+            <span>${esc(r.when || t('reviews.google'))}</span>
+          </div>
+        </div>
+      </article>`;
+  }).join('');
+}
+
+function wireSlider() {
+  const track = $('#revTrack');
+  const prev = $('#revPrev');
+  const next = $('#revNext');
+  const step = () => (track.firstElementChild?.getBoundingClientRect().width || 300) + 16;
+
+  prev.onclick = () => track.scrollBy({ left: -step(), behavior: 'smooth' });
+  next.onclick = () => track.scrollBy({ left: step(), behavior: 'smooth' });
+
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); }
+  });
+
+  const sync = () => {
+    // Scroll-snap rests the first card just past the track's own left padding,
+    // so "at the start" is that padding, not zero.
+    const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+    const max = track.scrollWidth - track.clientWidth - 2;
+    prev.disabled = track.scrollLeft <= pad + 2;
+    next.disabled = track.scrollLeft >= max;
+  };
+  track.addEventListener('scroll', sync, { passive: true });
+  new ResizeObserver(sync).observe(track);
+  sync();
 }
 
 // --------------------------------------------------------------------- hours

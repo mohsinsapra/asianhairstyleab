@@ -455,6 +455,62 @@ a { color: inherit; }
 .done p { color: var(--ink-soft); margin: 0 auto 24px; max-width: 40ch; }
 .done__btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 
+/* ------------------------------------------------------------------ reviews */
+
+/* Scroll-snap does the sliding. The arrows just nudge scrollLeft, so the
+   slider still works with a finger, a trackpad, or the keyboard if JS fails. */
+.revs { background: var(--surface); border-top: 1px solid var(--line); }
+.revs[hidden] { display: none; }
+
+.revs__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; max-width: none; }
+.revs__head p { margin: 14px 0 0; color: var(--ink-soft); font-size: 16.5px; }
+.revs__nav { display: flex; gap: 8px; flex: none; }
+
+.revs__arrow {
+  width: 46px; height: 46px; border-radius: 50%; cursor: pointer;
+  border: 1.5px solid var(--line); background: var(--surface); color: var(--ink);
+  font-size: 22px; line-height: 1; display: grid; place-items: center;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.revs__arrow:hover:not([disabled]) { border-color: var(--ink); }
+.revs__arrow[disabled] { opacity: .3; cursor: default; }
+
+.revs__track {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 360px);
+  gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 4px 4px 18px; margin-top: 26px;
+  scrollbar-width: thin;
+}
+.revs__track > * { scroll-snap-align: start; }
+.revs__track:focus-visible { outline: 3px solid var(--fuchsia); outline-offset: 4px; border-radius: var(--r-md); }
+
+.rev {
+  display: flex; flex-direction: column; gap: 12px;
+  background: var(--ground); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 20px;
+}
+.rev__stars { color: var(--marigold); font-size: 15px; letter-spacing: 2px; line-height: 1; }
+.rev__text { margin: 0; font-size: 15px; line-height: 1.62; color: var(--ink); }
+/* Long reviews are clamped so the cards stay a consistent height. */
+.rev__text { display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+.rev__by { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 4px; }
+.rev__avatar {
+  width: 36px; height: 36px; border-radius: 50%; flex: none; object-fit: cover;
+  background: var(--line); display: grid; place-items: center;
+  font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--ink-soft);
+}
+.rev__who { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
+.rev__who strong { font-size: 14.5px; font-weight: 600; }
+.rev__who span { font-size: 12.5px; color: var(--ink-faint); }
+
+.revs__cta { margin-top: 10px; }
+
+@media (max-width: 720px) {
+  .revs__head { flex-direction: column; align-items: flex-start; }
+  .revs__nav { display: none; }   /* swipe is the natural gesture here */
+  .revs__track { grid-auto-columns: minmax(250px, 84vw); }
+}
+
 /* -------------------------------------------------------------------- about */
 
 .about__in { display: grid; grid-template-columns: 1.35fr .65fr; gap: clamp(28px, 5vw, 64px); align-items: start; }

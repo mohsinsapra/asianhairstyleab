@@ -10,6 +10,7 @@ export const STRINGS = {
 
     'nav.services': 'Tjänster',
     'nav.book': 'Boka tid',
+    'nav.reviews': 'Omdömen',
     'nav.about': 'Om oss',
     'nav.contact': 'Kontakt',
     'nav.call': 'Ring',
@@ -92,7 +93,8 @@ export const STRINGS = {
 
     'reviews.title': 'Vad kunderna säger',
     'reviews.lead': '{rating} av 5 i snitt, baserat på {count} omdömen på Google.',
-    'reviews.cta': 'Läs alla omdömen',
+    'reviews.cta': 'Läs alla omdömen på Google',
+    'reviews.google': 'Omdöme från Google',
 
     'footer.rights': 'Alla rättigheter förbehållna.',
     'footer.book': 'Boka tid',
@@ -107,6 +109,7 @@ export const STRINGS = {
 
     'nav.services': 'Services',
     'nav.book': 'Book now',
+    'nav.reviews': 'Reviews',
     'nav.about': 'About',
     'nav.contact': 'Contact',
     'nav.call': 'Call',
@@ -189,7 +192,8 @@ export const STRINGS = {
 
     'reviews.title': 'What customers say',
     'reviews.lead': '{rating} out of 5 on average, from {count} Google reviews.',
-    'reviews.cta': 'Read all reviews',
+    'reviews.cta': 'Read all reviews on Google',
+    'reviews.google': 'Review from Google',
 
     'footer.rights': 'All rights reserved.',
     'footer.book': 'Book now',

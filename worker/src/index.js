@@ -4,6 +4,7 @@ import { availableSlots, findService } from './availability.js';
 import { wallToInstant, toDateStr, dayOfWeek, hhmm, humanDuration, addDays } from './time.js';
 import { sendBookingEmails } from './email.js';
 import { createCalendarEvent } from './calendar.js';
+import { getReviews } from './reviews.js';
 
 const ALLOWED_ORIGINS = [
   'https://asianhairstyleab.se',
@@ -55,6 +56,15 @@ export default {
       if (url.pathname === '/api/services') return json({ services: SERVICES }, 200, origin);
       if (url.pathname === '/api/availability' && request.method === 'GET') return availability(url, env, origin);
       if (url.pathname === '/api/booking' && request.method === 'POST') return book(request, env, ctx, origin);
+      if (url.pathname === '/api/reviews' && request.method === 'GET') {
+        try {
+          return json(await getReviews(env), 200, origin);
+        } catch (e) {
+          // A reviews outage must never look like a broken site.
+          console.error('reviews', e?.stack || e);
+          return json({ configured: false, reviews: [], error: 'upstream' }, 200, origin);
+        }
+      }
       return json({ error: 'not_found' }, 404, origin);
     } catch (err) {
       console.error('unhandled', err?.stack || err);
