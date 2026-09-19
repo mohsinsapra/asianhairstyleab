@@ -12,7 +12,7 @@ routes = [
 [[d1_databases]]
 binding = "DB"
 database_name = "ahab-bookings"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "PASTE_DATABASE_ID_HERE"   # from: npx wrangler d1 create ahab-bookings
 
 [observability]
 enabled = true
