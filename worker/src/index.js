@@ -12,6 +12,20 @@ const ALLOWED_ORIGINS = [
   'http://127.0.0.1:8788',
 ];
 
+// Temporary staging copy on Cloudflare Pages, used to preview the site while
+// the domain's nameservers propagate. Every Pages deployment also gets its own
+// <hash>.<project>.pages.dev hostname, hence the suffix match rather than a
+// fixed string. Safe to delete this and the isAllowed branch once the real
+// domain is serving.
+const PREVIEW_SUFFIX = '.asianhairstyleab-preview.pages.dev';
+const PREVIEW_ORIGIN = 'https://asianhairstyleab-preview.pages.dev';
+
+function isAllowed(origin) {
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  if (origin === PREVIEW_ORIGIN) return true;
+  return origin.startsWith('https://') && origin.endsWith(PREVIEW_SUFFIX);
+}
+
 const json = (data, status, origin) =>
   new Response(JSON.stringify(data), {
     status,
@@ -19,7 +33,7 @@ const json = (data, status, origin) =>
   });
 
 function cors(origin) {
-  const allow = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  const allow = isAllowed(origin) ? origin : ALLOWED_ORIGINS[0];
   return {
     'access-control-allow-origin': allow,
     'access-control-allow-methods': 'GET, POST, OPTIONS',
