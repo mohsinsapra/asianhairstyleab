@@ -4,6 +4,7 @@ import { initLang, setLang, getLang, t, sname, locale, STRINGS } from './i18n.js
 import { toDateStr, toMinutes, dayOfWeek, hhmm, humanDuration } from './time.js';
 import { initBooking, startWith, relabel } from './booking.js';
 import { REVIEWS as MANUAL_REVIEWS } from './reviews.js';
+import { serviceIcon } from './icons.js';
 
 const $ = (sel) => document.querySelector(sel);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -172,7 +173,9 @@ function renderServices() {
         <p class="catgroup__blurb">${esc(en ? cat.blurbEn : cat.blurbSv)}</p>
         ${rows.map((s) => `
           <article class="srv" style="--cat:var(--c-${cat.id})">
-            <div class="srv__img" ${s.images[0] ? `style="background-image:url('${esc(s.images[0])}')"` : 'data-empty="1"'}></div>
+            ${s.images[0]
+              ? `<div class="srv__img" style="background-image:url('${esc(s.images[0])}')"></div>`
+              : `<div class="srv__img srv__img--icon">${serviceIcon(s)}</div>`}
             <div>
               <div class="srv__name">${esc(sname(s))}</div>
               <div class="srv__meta">${esc(humanDuration(s.duration))}</div>

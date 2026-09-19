@@ -299,7 +299,18 @@ a { color: inherit; }
   width: 66px; height: 66px; border-radius: 8px; flex: none;
   background: #F3E8E2 center/cover no-repeat;
 }
-.srv__img[data-empty="1"] { background: color-mix(in srgb, var(--cat) 14%, #F3E8E2); }
+/* Fallback tile for services with no photograph: the category colour, quietly. */
+.srv__img--icon {
+  display: grid; place-items: center;
+  background:
+    radial-gradient(120% 120% at 30% 15%,
+      color-mix(in srgb, var(--cat) 20%, #fff) 0%,
+      color-mix(in srgb, var(--cat) 9%, #fff) 60%,
+      color-mix(in srgb, var(--cat) 14%, #fff) 100%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cat) 22%, transparent);
+  color: var(--cat);
+}
+.srv__img--icon svg { width: 55%; height: 55%; opacity: .92; }
 
 .srv__name { font-weight: 600; font-size: 15.5px; line-height: 1.32; }
 .srv__meta { font-size: 13px; color: var(--ink-faint); margin-top: 3px; }
