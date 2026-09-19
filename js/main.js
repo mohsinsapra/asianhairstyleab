@@ -41,6 +41,13 @@ function wireLinks() {
   $('#contactEmail').textContent = BUSINESS.email;
   $('#waLink').href = `https://wa.me/${BUSINESS.whatsapp}`;
   $('#mapsLink').href = `https://www.google.com/maps/search/?api=1&query=${BUSINESS.mapsQuery}`;
+
+  // Map embed is built here rather than hardcoded in the HTML, so the pin and
+  // the schema.org coordinates can never disagree.
+  const { lat, lon } = BUSINESS;
+  const bbox = [lon - 0.006, lat - 0.003, lon + 0.006, lat + 0.003].map((n) => n.toFixed(6)).join('%2C');
+  $('#mapFrame').src =
+    `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lon}`;
 }
 
 // ------------------------------------------------------------------- language
@@ -225,7 +232,7 @@ function buildJsonLd() {
       addressRegion: BUSINESS.region,
       addressCountry: BUSINESS.country,
     },
-    geo: { '@type': 'GeoCoordinates', latitude: 59.1747, longitude: 18.1345 },
+    geo: { '@type': 'GeoCoordinates', latitude: BUSINESS.lat, longitude: BUSINESS.lon },
     openingHoursSpecification: spec,
     aggregateRating: {
       '@type': 'AggregateRating',

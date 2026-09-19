@@ -16,6 +16,10 @@ export const BUSINESS = {
   rating: 5.0,
   reviewCount: 20,
   mapsQuery: 'Brandbergsleden+12,+136+76+Brandbergen',
+  // Geocoded from the street address, not estimated. The map embed and the
+  // schema.org geo block both read these, so there is one place to correct.
+  lat: 59.172938,
+  lon: 18.171648,
   // Set once the Worker is deployed. Empty string = site runs in "request mode":
   // the form still works and emails you, it just can't hide taken slots yet.
   apiBase: 'https://api.asianhairstyleab.se',
