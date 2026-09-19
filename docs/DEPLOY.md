@@ -19,23 +19,10 @@ The repo is already pushed. Turn Pages on:
 
 ---
 
-## 2. Point the domain at Cloudflare  ← **this is the only thing still blocking go-live**
+## 2. Point the domain at Cloudflare — **done**
 
-The zone is already added to Cloudflare (status: *pending*). It stays pending until the
-nameservers move, and nothing on the domain resolves until then — website or API.
-
-**In Loopia:**
-
-1. Log in → find `asianhairstyleab.se` → **Namnservrar** (nameservers).
-2. Choose *"Använd egna namnservrar"* / use your own nameservers.
-3. Replace `ns1.loopia.se` and `ns2.loopia.se` with exactly these two:
-
-```
-itzel.ns.cloudflare.com
-trevor.ns.cloudflare.com
-```
-
-4. Save.
+Nameservers moved to `itzel.ns.cloudflare.com` / `trevor.ns.cloudflare.com` and the
+Cloudflare zone went **active on 2026-09-19 at 14:16 UTC**.
 
 Then wait. `.se` usually updates within an hour or two, sometimes up to 24. Cloudflare emails you when the domain goes active.
 
@@ -49,9 +36,20 @@ When that prints the two `ns.cloudflare.com` names, you're through.
 
 ---
 
-## 3. DNS records for the website
+## 3. DNS records for the website  ← **the only thing still blocking go-live**
 
-Once Cloudflare says the domain is **Active**, go to **DNS → Records** and add these five.
+**First, delete the two records Cloudflare inherited from Loopia.** When a zone is
+imported, Cloudflare copies whatever the old registrar had — in this case Loopia's
+parking page. That is why `asianhairstyleab.se` currently shows *"Parked at Loopia"*.
+
+In **DNS → Records**, delete both:
+
+| Type | Name | Content |
+|---|---|---|
+| A | `asianhairstyleab.se` | `194.9.94.85` ← delete |
+| A | `asianhairstyleab.se` | `194.9.94.86` ← delete |
+
+Then add these five.
 
 > **Set the proxy to DNS only (grey cloud) for now.** GitHub has to reach your domain directly to issue its TLS certificate, and the orange cloud blocks that. You turn it on in step 3c.
 
