@@ -5,8 +5,8 @@ Website and online booking for **Frisör Style & Fashion (Asian Hairstyle AB)**,
 Swedish and English, mobile-first, 29 services with live availability. Customers pick a service, see only the times that are genuinely free, and book themselves in. The salon gets an email, and the appointment lands in Google Calendar.
 
 ```
-site/     static front-end  →  GitHub Pages  →  asianhairstyleab.se
-worker/   booking API       →  Cloudflare    →  api.asianhairstyleab.se
+index.html, js/, css/, assets/   →  GitHub Pages  →  asianhairstyleab.se
+worker/                          →  Cloudflare    →  api.asianhairstyleab.se
           ├── D1            appointments (source of truth)
           ├── Resend        email to the salon + customer
           └── Google Calendar (optional mirror)
@@ -14,7 +14,7 @@ worker/   booking API       →  Cloudflare    →  api.asianhairstyleab.se
 
 ## Why it is built this way
 
-**No build step on the front end.** Plain HTML, CSS and ES modules. GitHub Pages serves the files exactly as committed, so there is no CI to break and no toolchain to keep alive. Changing a price means editing one line in `site/js/services.js` and pushing.
+**No build step on the front end.** Plain HTML, CSS and ES modules. GitHub Pages serves the files exactly as committed, so there is no CI to break and no toolchain to keep alive. Changing a price means editing one line in `js/services.js` and pushing.
 
 **D1 is the source of truth, not Google Calendar.** Bookings are safe in a SQL table with real capacity constraints before anything else happens. Calendar sync is a best-effort mirror — if Google is down or not yet configured, bookings still work.
 
@@ -24,14 +24,14 @@ worker/   booking API       →  Cloudflare    →  api.asianhairstyleab.se
 
 | What | Where |
 |---|---|
-| Prices, durations, service names | `site/js/services.js` (and mirror into `worker/src/services.js`) |
-| Opening hours, phone, address | `site/js/config.js` |
-| Public holidays / closed days | `CLOSED_DATES` in `site/js/config.js` |
-| How many customers at once | `BOOKING.staffCount` in `site/js/config.js` |
+| Prices, durations, service names | `js/services.js` (and mirror into `worker/src/services.js`) |
+| Opening hours, phone, address | `js/config.js` |
+| Public holidays / closed days | `CLOSED_DATES` in `js/config.js` |
+| How many customers at once | `BOOKING.staffCount` in `js/config.js` |
 | Which services can't overlap | `maxConcurrent` per service in `services.js` |
-| Swedish / English wording | `site/js/i18n.js` |
+| Swedish / English wording | `js/i18n.js` |
 
-`site/js/config.js`, `services.js` and `time.js` are duplicated into `worker/src/`. After editing either copy run:
+`js/config.js`, `services.js` and `time.js` are duplicated into `worker/src/`. After editing either copy run:
 
 ```bash
 npm run check-sync
@@ -51,8 +51,8 @@ Slots are 15 minutes apart, need 2 hours' notice, and open 60 days ahead. All of
 ## Running it locally
 
 ```bash
-# Front end
-cd site && python3 -m http.server 8788
+# Front end (from the repo root)
+python3 -m http.server 8788
 
 # Booking API (separate terminal)
 cd worker && npm install
@@ -60,7 +60,7 @@ npx wrangler d1 execute ahab-bookings --local --file=./schema.sql
 npx wrangler dev --local --port 8787
 ```
 
-Then point the site at the local API by editing `apiBase` in `site/js/config.js`, or leave it alone — if the API can't be reached the booking form falls back to plain opening hours and still sends the request.
+Then point the site at the local API by editing `apiBase` in `js/config.js`, or leave it alone — if the API can't be reached the booking form falls back to plain opening hours and still sends the request.
 
 ## Tests
 

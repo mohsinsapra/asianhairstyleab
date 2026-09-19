@@ -1,4 +1,4 @@
-import { wallToInstant, toDateStr, toMinutes, dayOfWeek, hhmm, humanDuration, candidateSlots, tzOffsetMinutes, addDays } from '../site/js/time.js';
+import { wallToInstant, toDateStr, toMinutes, dayOfWeek, hhmm, humanDuration, candidateSlots, tzOffsetMinutes, addDays } from '../js/time.js';
 
 let fail = 0;
 const eq = (got, want, label) => {

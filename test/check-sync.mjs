@@ -1,12 +1,12 @@
-// site/js and worker/src share three files. Nothing enforces that at runtime,
+// js/ and worker/src/ share three files. Nothing enforces that at runtime,
 // so this does — a price changed in one copy and not the other would silently
 // let customers book slots the server then rejects.
 import { readFileSync } from 'node:fs';
 
 const PAIRS = [
-  ['site/js/time.js', 'worker/src/time.js', 'exact'],
-  ['site/js/config.js', 'worker/src/config.js', 'exact'],
-  ['site/js/services.js', 'worker/src/services.js', 'fields'],
+  ['js/time.js', 'worker/src/time.js', 'exact'],
+  ['js/config.js', 'worker/src/config.js', 'exact'],
+  ['js/services.js', 'worker/src/services.js', 'fields'],
 ];
 
 let bad = 0;

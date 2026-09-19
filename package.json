@@ -6,6 +6,6 @@
   "scripts": {
     "test": "node test/time.test.mjs && node test/availability.test.mjs && npm run check-sync",
     "check-sync": "node test/check-sync.mjs",
-    "serve": "python3 -m http.server 8788 --directory site"
+    "serve": "python3 -m http.server 8788 --directory ."
   }
 }

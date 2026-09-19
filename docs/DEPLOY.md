@@ -12,10 +12,10 @@ The repo is already pushed. Turn Pages on:
 
 1. Go to **Settings → Pages** in the GitHub repo.
 2. **Source:** Deploy from a branch.
-3. **Branch:** `main`, folder **`/site`**. Save.
+3. **Branch:** `main`, folder **`/ (root)`**. Save.
 4. Wait ~1 minute, then check the `github.io` URL it shows you. The site should load (styling and all) — it just won't be on your own domain yet.
 
-`site/CNAME` already contains `asianhairstyleab.se`, so GitHub knows which domain to expect. Leave the **Enforce HTTPS** box alone for now; it can't be ticked until DNS points here.
+`CNAME` already contains `asianhairstyleab.se`, so GitHub knows which domain to expect. Leave the **Enforce HTTPS** box alone for now; it can't be ticked until DNS points here.
 
 ---
 
@@ -161,9 +161,9 @@ cd worker && npm run db:bookings
 cd worker && npm run tail
 ```
 
-**Change a price:** edit `site/js/services.js`, mirror it into `worker/src/services.js`, run `npm run check-sync`, commit and push. GitHub Pages redeploys on its own; run `npx wrangler deploy` in `worker/` for the API side.
+**Change a price:** edit `js/services.js`, mirror it into `worker/src/services.js`, run `npm run check-sync`, commit and push. GitHub Pages redeploys on its own; run `npx wrangler deploy` in `worker/` for the API side.
 
-**Close for a holiday:** add the date to `CLOSED_DATES` in *both* `site/js/config.js` and `worker/src/config.js`, then push and redeploy the Worker.
+**Close for a holiday:** add the date to `CLOSED_DATES` in *both* `js/config.js` and `worker/src/config.js`, then push and redeploy the Worker.
 
 ---
 
