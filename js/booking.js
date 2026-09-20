@@ -1,8 +1,8 @@
-import { BUSINESS, HOURS, BOOKING, CLOSED_DATES } from './config.js';
-import { SERVICES, CATEGORIES } from './services.js';
-import { serviceIcon } from './icons.js';
-import { t, sname, getLang, locale } from './i18n.js';
-import { toDateStr, addDays, dayOfWeek, hhmm, humanDuration, candidateSlots, wallToInstant } from './time.js';
+import { BUSINESS, HOURS, BOOKING, CLOSED_DATES } from './config.js?v=842e69ea';
+import { SERVICES, CATEGORIES } from './services.js?v=842e69ea';
+import { serviceIcon } from './icons.js?v=842e69ea';
+import { t, sname, getLang, locale } from './i18n.js?v=842e69ea';
+import { toDateStr, addDays, dayOfWeek, hhmm, humanDuration, candidateSlots, wallToInstant } from './time.js?v=842e69ea';
 
 const state = {
   step: 1,

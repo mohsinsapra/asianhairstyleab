@@ -72,6 +72,19 @@ Covers the Europe/Stockholm conversions across both DST boundaries, slot generat
 
 ## Deploying
 
+Before committing a change to the front end:
+
+```bash
+npm run stamp
+```
+
+GitHub Pages serves `index.html` for 10 minutes but CSS and JS for 4 hours. Without this,
+a returning visitor gets new HTML running against stale JavaScript for up to four hours —
+the categories and the booking wizard render empty. `npm run stamp` appends `?v=<hash>` to
+every asset URL, including the imports inside the modules, so a changed file is always
+fetched fresh. It is idempotent, and skipping it leaves a working site, just cached the old
+way.
+
 See [docs/DEPLOY.md](docs/DEPLOY.md) — Cloudflare DNS, GitHub Pages, the Worker, email, and Google Calendar, in order.
 
 ## Where the data came from

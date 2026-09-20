@@ -1,10 +1,10 @@
-import { BUSINESS, HOURS, CLOSED_DATES } from './config.js';
-import { SERVICES, CATEGORIES } from './services.js';
-import { initLang, setLang, getLang, t, sname, locale, STRINGS } from './i18n.js';
-import { toDateStr, toMinutes, dayOfWeek, hhmm, humanDuration } from './time.js';
-import { initBooking, startWith, relabel } from './booking.js';
-import { REVIEWS as MANUAL_REVIEWS } from './reviews.js';
-import { serviceIcon } from './icons.js';
+import { BUSINESS, HOURS, CLOSED_DATES } from './config.js?v=842e69ea';
+import { SERVICES, CATEGORIES } from './services.js?v=842e69ea';
+import { initLang, setLang, getLang, t, sname, locale, STRINGS } from './i18n.js?v=842e69ea';
+import { toDateStr, toMinutes, dayOfWeek, hhmm, humanDuration } from './time.js?v=842e69ea';
+import { initBooking, startWith, relabel } from './booking.js?v=842e69ea';
+import { REVIEWS as MANUAL_REVIEWS } from './reviews.js?v=842e69ea';
+import { serviceIcon } from './icons.js?v=842e69ea';
 
 const $ = (sel) => document.querySelector(sel);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
