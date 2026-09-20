@@ -23,6 +23,7 @@ function boot() {
   applyLang();
 
   $('#year').textContent = new Date().getFullYear();
+  $('#factServices').textContent = SERVICES.length;
   $('#langToggle').addEventListener('click', () => {
     setLang(getLang() === 'sv' ? 'en' : 'sv');
     applyLang();
@@ -177,10 +178,10 @@ function renderServices() {
               ? `<div class="srv__img" style="background-image:url('${esc(s.images[0])}')"></div>`
               : `<div class="srv__img srv__img--icon">${serviceIcon(s)}</div>`}
             <div>
-              <div class="srv__name">${esc(sname(s))}</div>
+              <div class="srv__name">${esc(sname(s))}${s.package ? `<span class="srv__tag">${esc(t('services.package'))}</span>` : ''}</div>
               <div class="srv__meta">${esc(humanDuration(s.duration))}</div>
             </div>
-            <div class="srv__price">${s.price} kr</div>
+            <div class="srv__price">${s.from ? `<small>${esc(t('services.from'))}</small>` : ''}${s.price} kr</div>
             <button type="button" class="btn btn--primary srv__btn" data-book="${esc(s.id)}">${esc(t('services.book'))}</button>
           </article>`).join('')}
       </div>`;
@@ -310,7 +311,7 @@ function buildJsonLd() {
     telephone: BUSINESS.phoneE164,
     email: BUSINESS.email,
     image: 'https://asianhairstyleab.se/assets/og.jpg',
-    priceRange: '100–1500 kr',
+    priceRange: `${Math.min(...SERVICES.map((x) => x.price))}–${Math.max(...SERVICES.map((x) => x.price))} kr`,
     currenciesAccepted: 'SEK',
     address: {
       '@type': 'PostalAddress',

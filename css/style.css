@@ -29,6 +29,7 @@
   --c-vaxning:    #0E7FD4;
   --c-henna:      #B4451F;
   --c-ansikte:    #D6389B;
+  --c-naglar:     #7A3FE4;
 
   --r-sm: 10px;
   --r-md: 16px;
@@ -315,6 +316,12 @@ a { color: inherit; }
 .srv__name { font-weight: 600; font-size: 15.5px; line-height: 1.32; }
 .srv__meta { font-size: 13px; color: var(--ink-faint); margin-top: 3px; }
 .srv__price { font-family: var(--display); font-size: 19px; font-weight: 700; white-space: nowrap; }
+.srv__price small { font-family: var(--body); font-size: 12px; font-weight: 500; color: var(--ink-faint); margin-right: 3px; }
+.srv__tag {
+  display: inline-block; margin-left: 7px; padding: 2px 8px; border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--cat) 15%, #fff); color: var(--cat);
+  font-size: 11px; font-weight: 700; letter-spacing: .02em; vertical-align: 1px;
+}
 .srv__btn { padding: 9px 17px; font-size: 14px; min-height: 40px; }
 
 @media (max-width: 640px) {

@@ -85,6 +85,12 @@ const FACE = S(`
   <path d="M9.4 10.4h1.4M13.2 10.4h1.4"/>
   <path d="M10.4 14.6c1 .8 2.2.8 3.2 0"/>`);
 
+// Polish bottle with a brush, for the nails menu.
+const NAILS = S(`
+  <path d="M10.4 2.6h3.2v3.1l1.5 1.4a2.4 2.4 0 0 1 .8 1.8v9.7a2.4 2.4 0 0 1-2.4 2.4h-3a2.4 2.4 0 0 1-2.4-2.4V8.9a2.4 2.4 0 0 1 .8-1.8l1.5-1.4z"/>
+  <path d="M8.1 11.6h7.8"/>
+  <path d="M19.4 6.1c1 1.6 1.5 2.7 1.5 3.3a1.5 1.5 0 0 1-3 0c0-.6.5-1.7 1.5-3.3z"/>`);
+
 /** Per-category default. */
 const BY_CATEGORY = {
   klippning: SCISSORS,
@@ -95,6 +101,7 @@ const BY_CATEGORY = {
   vaxning: WAX,
   henna: HENNA,
   ansikte: FACE,
+  naglar: NAILS,
 };
 
 /** Services that read better with something more specific than their category. */

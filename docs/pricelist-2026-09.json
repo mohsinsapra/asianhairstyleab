@@ -1,0 +1,769 @@
+{
+ "services": [
+  {
+   "category": "naglar",
+   "sv": "Klassisk manikyr",
+   "en": "Classic manicure",
+   "price": 250,
+   "flags": []
+  },
+  {
+   "category": "naglar",
+   "sv": "Manikyr med gellack",
+   "en": "Manicure with gel polish",
+   "price": 350,
+   "flags": []
+  },
+  {
+   "category": "naglar",
+   "sv": "Gellack, enfärgad",
+   "en": "Gel polish, single colour",
+   "price": 300,
+   "flags": []
+  },
+  {
+   "category": "naglar",
+   "sv": "Gellack med enkel nail art",
+   "en": "Gel polish with simple nail art",
+   "price": 350,
+   "flags": []
+  },
+  {
+   "category": "naglar",
+   "sv": "Nytt set, kort längd",
+   "en": "New set, short",
+   "price": 450,
+   "flags": []
+  },
+  {
+   "category": "naglar",
+   "sv": "Nytt set, medium längd",
+   "en": "New set, medium",
+   "price": 550,
+   "flags": []
+  },
+  {
+   "category": "naglar",
+   "sv": "Nytt set, lång längd",
+   "en": "New set, long",
+   "price": 650,
+   "flags": []
+  },
+  {
+   "category": "naglar",
+   "sv": "Builder gel på naturliga naglar",
+   "en": "Builder gel on natural nails",
+   "price": 450,
+   "flags": []
+  },
+  {
+   "category": "naglar",
+   "sv": "Builder gel med gellack",
+   "en": "Builder gel with gel polish",
+   "price": 550,
+   "flags": []
+  },
+  {
+   "category": "naglar",
+   "sv": "Nail art, enkel design",
+   "en": "Nail art, simple design",
+   "price": 50,
+   "flags": [
+    "from"
+   ]
+  },
+  {
+   "category": "naglar",
+   "sv": "Nail art, avancerad design",
+   "en": "Nail art, advanced design",
+   "price": 100,
+   "flags": [
+    "from"
+   ]
+  },
+  {
+   "category": "naglar",
+   "sv": "Påfyllning inom 3 veckor",
+   "en": "Infill within 3 weeks",
+   "price": 400,
+   "flags": []
+  },
+  {
+   "category": "naglar",
+   "sv": "Påfyllning inom 4 veckor",
+   "en": "Infill within 4 weeks",
+   "price": 500,
+   "flags": []
+  },
+  {
+   "category": "klippning",
+   "sv": "Damklippning, kort hår",
+   "en": "Women’s haircut, short",
+   "price": 250,
+   "flags": [
+    "nowash"
+   ]
+  },
+  {
+   "category": "klippning",
+   "sv": "Damklippning, axellångt hår",
+   "en": "Women’s haircut, medium",
+   "price": 300,
+   "flags": [
+    "nowash"
+   ]
+  },
+  {
+   "category": "klippning",
+   "sv": "Damklippning, långt hår",
+   "en": "Women’s haircut, long",
+   "price": 350,
+   "flags": [
+    "nowash"
+   ]
+  },
+  {
+   "category": "klippning",
+   "sv": "Damklippning, extra långt hår",
+   "en": "Women’s haircut, extra long",
+   "price": 450,
+   "flags": [
+    "nowash"
+   ]
+  },
+  {
+   "category": "klippning",
+   "sv": "Layer cut, kort/axellångt hår",
+   "en": "Layer cut, short/medium",
+   "price": 400,
+   "flags": [
+    "nowash"
+   ]
+  },
+  {
+   "category": "klippning",
+   "sv": "Layer cut, långt/extra långt hår",
+   "en": "Layer cut, long/extra long",
+   "price": 500,
+   "flags": [
+    "nowash"
+   ]
+  },
+  {
+   "category": "klippning",
+   "sv": "Herrklippning, klassisk",
+   "en": "Men’s classic haircut",
+   "price": 250,
+   "flags": [
+    "nowash"
+   ]
+  },
+  {
+   "category": "klippning",
+   "sv": "Herrklippning, fade",
+   "en": "Men’s fade haircut",
+   "price": 250,
+   "flags": [
+    "nowash"
+   ]
+  },
+  {
+   "category": "klippning",
+   "sv": "Skäggtrimning",
+   "en": "Beard trimming",
+   "price": 150,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Utväxtfärg",
+   "en": "Root colour",
+   "price": 700,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Global färg, kort hår",
+   "en": "All-over colour, short",
+   "price": 900,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Global färg, axellångt hår",
+   "en": "All-over colour, medium",
+   "price": 1000,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Global färg, långt hår",
+   "en": "All-over colour, long",
+   "price": 1200,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Toning / glansfärg",
+   "en": "Toner / gloss",
+   "price": 500,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Slingor, halvt huvud",
+   "en": "Highlights, half head",
+   "price": 1200,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Slingor, helt huvud",
+   "en": "Highlights, full head",
+   "price": 1600,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Balayage + toning",
+   "en": "Balayage + toner",
+   "price": 1500,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Ombre",
+   "en": "Ombre",
+   "price": 1500,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Blekning",
+   "en": "Bleaching",
+   "price": 1000,
+   "flags": []
+  },
+  {
+   "category": "harfarg",
+   "sv": "Utväxtfärg + klippning",
+   "en": "Root colour + cut",
+   "price": 900,
+   "flags": [
+    "paket"
+   ]
+  },
+  {
+   "category": "harfarg",
+   "sv": "Global färg + klippning",
+   "en": "All-over colour + cut",
+   "price": 1200,
+   "flags": [
+    "paket"
+   ]
+  },
+  {
+   "category": "harfarg",
+   "sv": "Färg + toning",
+   "en": "Colour + toner",
+   "price": 999,
+   "flags": [
+    "paket",
+    "from"
+   ]
+  },
+  {
+   "category": "harfarg",
+   "sv": "Balayage + toning (paket)",
+   "en": "Balayage + toner (package)",
+   "price": 1800,
+   "flags": [
+    "paket",
+    "from"
+   ]
+  },
+  {
+   "category": "behandling",
+   "sv": "Proteinbehandling, kort hår",
+   "en": "Protein treatment, short",
+   "price": 800,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Proteinbehandling, axellångt hår",
+   "en": "Protein treatment, medium",
+   "price": 1200,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Proteinbehandling, långt hår",
+   "en": "Protein treatment, long",
+   "price": 1600,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Proteinbehandling, extra långt hår",
+   "en": "Protein treatment, extra long",
+   "price": 2000,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Keratinbehandling, kort hår",
+   "en": "Keratin treatment, short",
+   "price": 1500,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Keratinbehandling, axellångt hår",
+   "en": "Keratin treatment, medium",
+   "price": 2000,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Keratinbehandling, långt hår",
+   "en": "Keratin treatment, long",
+   "price": 2800,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Keratinbehandling, extra långt hår",
+   "en": "Keratin treatment, extra long",
+   "price": 3500,
+   "flags": [
+    "flyer-typo"
+   ]
+  },
+  {
+   "category": "behandling",
+   "sv": "Olaplex (bond builder)",
+   "en": "Olaplex (bond builder)",
+   "price": 900,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Plex flex-behandling",
+   "en": "Plex flex treatment",
+   "price": 1000,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Plex-behandling, kort hår",
+   "en": "Plex treatment, short",
+   "price": 1200,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Plex-behandling, långt hår",
+   "en": "Plex treatment, long",
+   "price": 1800,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Plex-behandling, extra långt hår",
+   "en": "Plex treatment, extra long",
+   "price": 2200,
+   "flags": []
+  },
+  {
+   "category": "behandling",
+   "sv": "Proteinbehandling + klippning",
+   "en": "Protein treatment + cut",
+   "price": 1500,
+   "flags": [
+    "paket",
+    "from"
+   ]
+  },
+  {
+   "category": "behandling",
+   "sv": "Keratinbehandling + klippning",
+   "en": "Keratin treatment + cut",
+   "price": 2500,
+   "flags": [
+    "paket",
+    "from"
+   ]
+  },
+  {
+   "category": "behandling",
+   "sv": "Plex-behandling + klippning",
+   "en": "Plex treatment + cut",
+   "price": 1700,
+   "flags": [
+    "paket",
+    "from"
+   ]
+  },
+  {
+   "category": "behandling",
+   "sv": "Proteinbehandling + färg",
+   "en": "Protein treatment + colour",
+   "price": 1800,
+   "flags": [
+    "paket",
+    "from"
+   ]
+  },
+  {
+   "category": "behandling",
+   "sv": "Keratinbehandling + färg",
+   "en": "Keratin treatment + colour",
+   "price": 2800,
+   "flags": [
+    "paket",
+    "from"
+   ]
+  },
+  {
+   "category": "behandling",
+   "sv": "Plex-behandling + färg",
+   "en": "Plex treatment + colour",
+   "price": 2200,
+   "flags": [
+    "paket",
+    "from"
+   ]
+  },
+  {
+   "category": "behandling",
+   "sv": "Protein + keratin combo",
+   "en": "Protein + keratin combo",
+   "price": 3500,
+   "flags": [
+    "paket",
+    "from"
+   ]
+  },
+  {
+   "category": "behandling",
+   "sv": "Keratin + plex combo",
+   "en": "Keratin + plex combo",
+   "price": 3200,
+   "flags": [
+    "paket",
+    "from"
+   ]
+  },
+  {
+   "category": "ansikte",
+   "sv": "Simple facial",
+   "en": "Simple facial",
+   "price": 400,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Clean up facial",
+   "en": "Clean up facial",
+   "price": 350,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Ansiktsmassage",
+   "en": "Face massage",
+   "price": 250,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Fruit facial",
+   "en": "Fruit facial",
+   "price": 500,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Whitening facial",
+   "en": "Whitening facial",
+   "price": 700,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Gold facial",
+   "en": "Gold facial",
+   "price": 800,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "De-tan facial",
+   "en": "De-tan facial",
+   "price": 700,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Anti-aging facial",
+   "en": "Anti-ageing facial",
+   "price": 900,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Hydrating facial",
+   "en": "Hydrating facial",
+   "price": 750,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Deep cleansing facial",
+   "en": "Deep cleansing facial",
+   "price": 950,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Blackhead removal",
+   "en": "Blackhead removal",
+   "price": 200,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Ansiktsmask",
+   "en": "Face mask",
+   "price": 150,
+   "flags": []
+  },
+  {
+   "category": "ansikte",
+   "sv": "Simple facial + ansiktsmassage",
+   "en": "Simple facial + face massage",
+   "price": 550,
+   "flags": [
+    "paket"
+   ]
+  },
+  {
+   "category": "ansikte",
+   "sv": "Whitening facial + bryn",
+   "en": "Whitening facial + brows",
+   "price": 800,
+   "flags": [
+    "paket"
+   ]
+  },
+  {
+   "category": "ansikte",
+   "sv": "Gold facial + ansiktsmassage",
+   "en": "Gold facial + face massage",
+   "price": 950,
+   "flags": [
+    "paket"
+   ]
+  },
+  {
+   "category": "ansikte",
+   "sv": "Complete facial-paket",
+   "en": "Complete facial package",
+   "price": 1200,
+   "flags": [
+    "paket"
+   ]
+  },
+  {
+   "category": "bryn",
+   "sv": "Ögonbrynsformning",
+   "en": "Eyebrow shaping",
+   "price": 150,
+   "flags": []
+  },
+  {
+   "category": "bryn",
+   "sv": "Trådning överläpp",
+   "en": "Upper lip threading",
+   "price": 100,
+   "flags": []
+  },
+  {
+   "category": "bryn",
+   "sv": "Trådning hela ansiktet",
+   "en": "Full face threading",
+   "price": 300,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Överläppsvaxning",
+   "en": "Upper lip wax",
+   "price": 100,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Hakvaxning",
+   "en": "Chin wax",
+   "price": 100,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Pannvaxning",
+   "en": "Forehead wax",
+   "price": 100,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Ansiktsvaxning, hela ansiktet",
+   "en": "Full face wax",
+   "price": 300,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Armhålsvaxning",
+   "en": "Underarm wax",
+   "price": 150,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Vaxning, halva armar",
+   "en": "Half arms wax",
+   "price": 200,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Vaxning, båda fulla armar",
+   "en": "Both full arms wax",
+   "price": 400,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Vaxning, halva ben",
+   "en": "Half legs wax",
+   "price": 250,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Vaxning, fulla ben",
+   "en": "Full legs wax",
+   "price": 500,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Ryggvaxning",
+   "en": "Back wax",
+   "price": 350,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Magvaxning",
+   "en": "Stomach wax",
+   "price": 250,
+   "flags": []
+  },
+  {
+   "category": "vaxning",
+   "sv": "Ansiktspaket: överläpp + haka + panna",
+   "en": "Face package: lip + chin + forehead",
+   "price": 250,
+   "flags": [
+    "paket"
+   ]
+  },
+  {
+   "category": "vaxning",
+   "sv": "Ansikte plus: hela ansiktet + brynformning",
+   "en": "Face plus: full face + brow shape",
+   "price": 350,
+   "flags": [
+    "paket"
+   ]
+  },
+  {
+   "category": "vaxning",
+   "sv": "Armpaket: båda fulla armar + armhålor",
+   "en": "Arm package: both full arms + underarms",
+   "price": 500,
+   "flags": [
+    "paket"
+   ]
+  },
+  {
+   "category": "vaxning",
+   "sv": "Benpaket: fulla ben + armhålor",
+   "en": "Leg package: full legs + underarms",
+   "price": 600,
+   "flags": [
+    "paket"
+   ]
+  },
+  {
+   "category": "vaxning",
+   "sv": "Arm & ben combo: båda fulla armar + fulla ben",
+   "en": "Arm & leg combo: both full arms + full legs",
+   "price": 750,
+   "flags": [
+    "paket"
+   ]
+  }
+ ],
+ "addons": [
+  {
+   "sv": "Hårtvätt, kort hår",
+   "en": "Hair wash, short",
+   "price": 50
+  },
+  {
+   "sv": "Hårtvätt, axellångt hår",
+   "en": "Hair wash, medium",
+   "price": 75
+  },
+  {
+   "sv": "Hårtvätt, långt hår",
+   "en": "Hair wash, long",
+   "price": 100
+  },
+  {
+   "sv": "Hårtvätt, extra långt hår",
+   "en": "Hair wash, extra long",
+   "price": 150
+  },
+  {
+   "sv": "Hårtvätt, herr",
+   "en": "Hair wash, men",
+   "price": 50
+  },
+  {
+   "sv": "Tjockt hår",
+   "en": "Thick hair",
+   "price": 50
+  },
+  {
+   "sv": "Extra tjockt hår",
+   "en": "Extra thick hair",
+   "price": 100
+  },
+  {
+   "sv": "Extra långt hår",
+   "en": "Extra long hair",
+   "price": 150
+  },
+  {
+   "sv": "Mycket tjockt hår (asian hair)",
+   "en": "Very thick hair (asian hair)",
+   "price": 300
+  }
+ ]
+}

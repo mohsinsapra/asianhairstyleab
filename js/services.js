@@ -1,27 +1,31 @@
-// Generated from the SumUp catalogue. Edit prices/durations here — nothing else reads them.
-// duration = minutes, price = SEK, maxConcurrent = how many can run in parallel.
+// The salon's service catalogue.
+// Prices and names come from the printed price list photographed 2026-09-20;
+// where it disagreed with the older SumUp data, the printed list wins.
+// Services marked source:'sumup' are still offered but absent from that flyer.
+// duration = minutes, price = SEK, from = show as 'från X kr',
+// package = a combination offer, maxConcurrent = how many can run in parallel.
 
 export const CATEGORIES = [
   {
     "id": "klippning",
     "sv": "Klippning",
     "en": "Haircuts",
-    "blurbSv": "Klippning för dam, herr och barn",
-    "blurbEn": "Cuts for women, men and kids"
+    "blurbSv": "Dam, herr och barn",
+    "blurbEn": "Women, men and children"
   },
   {
     "id": "farg",
     "sv": "Färg & slingor",
     "en": "Colour & highlights",
-    "blurbSv": "Balayage, folieslingor och utväxtfärg",
-    "blurbEn": "Balayage, foils and root touch-ups"
+    "blurbSv": "Utväxt, global färg, slingor, balayage",
+    "blurbEn": "Roots, all-over colour, highlights, balayage"
   },
   {
     "id": "behandling",
     "sv": "Hårbehandlingar",
     "en": "Hair treatments",
-    "blurbSv": "Keratin, protein, Fiberplex och permanent",
-    "blurbEn": "Keratin, protein, Fiberplex and perms"
+    "blurbSv": "Protein, keratin och plex",
+    "blurbEn": "Protein, keratin and plex"
   },
   {
     "id": "styling",
@@ -31,18 +35,32 @@ export const CATEGORIES = [
     "blurbEn": "Wash, blow-dry and straightening"
   },
   {
+    "id": "naglar",
+    "sv": "Naglar",
+    "en": "Nails",
+    "blurbSv": "Manikyr, gellack, förlängning och nail art",
+    "blurbEn": "Manicure, gel polish, extensions and nail art"
+  },
+  {
     "id": "bryn",
     "sv": "Bryn & fransar",
     "en": "Brows & lashes",
-    "blurbSv": "Browlift, lashlift, trådning och färg",
-    "blurbEn": "Brow lift, lash lift, threading and tinting"
+    "blurbSv": "Formning, trådning, browlift och lashlift",
+    "blurbEn": "Shaping, threading, brow lift and lash lift"
   },
   {
     "id": "vaxning",
-    "sv": "Vaxning & trådning",
-    "en": "Waxing & threading",
+    "sv": "Vaxning",
+    "en": "Waxing",
     "blurbSv": "Hårborttagning för kropp och ansikte",
     "blurbEn": "Body and facial hair removal"
+  },
+  {
+    "id": "ansikte",
+    "sv": "Ansiktsbehandlingar",
+    "en": "Facials",
+    "blurbSv": "Rengöring, vård och massage",
+    "blurbEn": "Cleansing, care and massage"
   },
   {
     "id": "henna",
@@ -50,106 +68,10 @@ export const CATEGORIES = [
     "en": "Henna",
     "blurbSv": "Henna och henna-tatueringar",
     "blurbEn": "Henna and henna tattoos"
-  },
-  {
-    "id": "ansikte",
-    "sv": "Ansiktsbehandling",
-    "en": "Facials",
-    "blurbSv": "Rengöring och vård för huden",
-    "blurbEn": "Cleansing and skincare"
   }
 ];
 
 export const SERVICES = [
-  {
-    "id": "balayage",
-    "category": "farg",
-    "sv": "Balayage – frihandsteknik",
-    "en": "Balayage – freehand technique",
-    "duration": 270,
-    "price": 1500,
-    "maxConcurrent": 1,
-    "images": [
-      "assets/services/img_4TQ0Q6SJ679AXVPQH7AJY8H6H9.jpg"
-    ],
-    "sumupId": "553e4d54-8e6c-4c73-9bbf-647a1a6e0b8f",
-    "sumupName": "Balajage Free hand tecknik, according to hair length och thikness"
-  },
-  {
-    "id": "folieslingor",
-    "category": "farg",
-    "sv": "Folieslingor",
-    "en": "Foil highlights",
-    "duration": 270,
-    "price": 1500,
-    "maxConcurrent": 1,
-    "images": [
-      "assets/services/img_6W04WZN4WJ92HS5NNQ6WMFZPCN.jpg"
-    ],
-    "sumupId": "73ec3e81-bf5b-4861-b77c-15d4a6298a99",
-    "sumupName": "Folieslingor  beror på hårs lengd och tjocklighet"
-  },
-  {
-    "id": "utvaxtfarg",
-    "category": "farg",
-    "sv": "Utväxtfärg (2–3 cm)",
-    "en": "Root touch-up colour (2–3 cm)",
-    "duration": 90,
-    "price": 700,
-    "maxConcurrent": 1,
-    "images": [
-      "assets/services/img_04MNBCKH358TKT09RJ74RDYJ20.jpg",
-      "assets/services/img_29YXSB6X409NKRZ5RKF5RVY37N.jpg"
-    ],
-    "sumupId": "d3eb274d-05ef-4bc1-ba34-9648633b95b8",
-    "sumupName": "Utväxtfärg  2 till 3 cm"
-  },
-  {
-    "id": "dam-axellang",
-    "category": "klippning",
-    "sv": "Damklippning, axellångt hår",
-    "en": "Women's haircut, shoulder-length",
-    "duration": 45,
-    "price": 300,
-    "maxConcurrent": 2,
-    "images": [
-      "assets/services/img_2NM3V07BJ691R9QQYF5ZJTT963.jpg",
-      "assets/services/img_2G6ZFVVFVS8NWRB40BEFQHFBJ8.jpg",
-      "assets/services/img_599H7PAN7G89X8X7EZ9S0EPKTQ.jpg"
-    ],
-    "sumupId": "65c1d964-9937-41b6-8164-a422e610b80c",
-    "sumupName": "Dam klippning axellång hår (without hair wash)"
-  },
-  {
-    "id": "dam-kort",
-    "category": "klippning",
-    "sv": "Damklippning, kort hår",
-    "en": "Women's haircut, short hair",
-    "duration": 45,
-    "price": 250,
-    "maxConcurrent": 2,
-    "images": [
-      "assets/services/img_3H2Y0AQHCR944TAB3S4JZ4KAPA.jpg",
-      "assets/services/img_55JNJXQTZB8VT83QQXFJA6AD6C.jpg",
-      "assets/services/img_509Y1ND8PC8DN9TP2PFKFPTB7W.jpg"
-    ],
-    "sumupId": "399bb890-0862-4aec-b1f3-db995f712a0c",
-    "sumupName": "Dam klippning kort hår( without hair wash)"
-  },
-  {
-    "id": "herr-klassisk",
-    "category": "klippning",
-    "sv": "Herrklippning, klassisk",
-    "en": "Men's classic haircut",
-    "duration": 45,
-    "price": 250,
-    "maxConcurrent": 2,
-    "images": [
-      "assets/services/img_3M22WB4N4E9KZTX0XZ9JSGAKEP.jpg"
-    ],
-    "sumupId": "3f56bf06-8cd5-4cbc-b1b6-08f38aa230a0",
-    "sumupName": "Men klassisk hår klippning"
-  },
   {
     "id": "barn",
     "category": "klippning",
@@ -158,23 +80,393 @@ export const SERVICES = [
     "duration": 45,
     "price": 200,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [],
-    "sumupId": "a2a32df2-51c8-4778-9ce2-407acb0f95dd",
-    "sumupName": "Barn klippning från 5 till 12 år"
+    "source": "sumup"
   },
   {
-    "id": "keratin",
-    "category": "behandling",
-    "sv": "Keratinbehandling",
-    "en": "Keratin treatment",
-    "duration": 360,
+    "id": "damklippning-axellangt-har",
+    "category": "klippning",
+    "sv": "Damklippning, axellångt hår",
+    "en": "Women’s haircut, medium",
+    "duration": 45,
+    "price": 300,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [
+      "assets/services/img_2NM3V07BJ691R9QQYF5ZJTT963.jpg",
+      "assets/services/img_2G6ZFVVFVS8NWRB40BEFQHFBJ8.jpg",
+      "assets/services/img_599H7PAN7G89X8X7EZ9S0EPKTQ.jpg"
+    ],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "damklippning-extra-langt-har",
+    "category": "klippning",
+    "sv": "Damklippning, extra långt hår",
+    "en": "Women’s haircut, extra long",
+    "duration": 75,
+    "price": 450,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "damklippning-kort-har",
+    "category": "klippning",
+    "sv": "Damklippning, kort hår",
+    "en": "Women’s haircut, short",
+    "duration": 45,
+    "price": 250,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [
+      "assets/services/img_3H2Y0AQHCR944TAB3S4JZ4KAPA.jpg",
+      "assets/services/img_55JNJXQTZB8VT83QQXFJA6AD6C.jpg",
+      "assets/services/img_509Y1ND8PC8DN9TP2PFKFPTB7W.jpg"
+    ],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "damklippning-langt-har",
+    "category": "klippning",
+    "sv": "Damklippning, långt hår",
+    "en": "Women’s haircut, long",
+    "duration": 60,
+    "price": 350,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "herrklippning-fade",
+    "category": "klippning",
+    "sv": "Herrklippning, fade",
+    "en": "Men’s fade haircut",
+    "duration": 45,
+    "price": 250,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "herrklippning-klassisk",
+    "category": "klippning",
+    "sv": "Herrklippning, klassisk",
+    "en": "Men’s classic haircut",
+    "duration": 45,
+    "price": 250,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [
+      "assets/services/img_3M22WB4N4E9KZTX0XZ9JSGAKEP.jpg"
+    ],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "layer-cut-kort-axellangt-har",
+    "category": "klippning",
+    "sv": "Layer cut, kort/axellångt hår",
+    "en": "Layer cut, short/medium",
+    "duration": 60,
+    "price": 400,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "layer-cut-langt-extra-langt-har",
+    "category": "klippning",
+    "sv": "Layer cut, långt/extra långt hår",
+    "en": "Layer cut, long/extra long",
+    "duration": 75,
+    "price": 500,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "skaggtrimning",
+    "category": "klippning",
+    "sv": "Skäggtrimning",
+    "en": "Beard trimming",
+    "duration": 20,
+    "price": 150,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "balayage-toning",
+    "category": "farg",
+    "sv": "Balayage + toning",
+    "en": "Balayage + toner",
+    "duration": 270,
     "price": 1500,
     "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [
+      "assets/services/img_4TQ0Q6SJ679AXVPQH7AJY8H6H9.jpg"
+    ],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "blekning",
+    "category": "farg",
+    "sv": "Blekning",
+    "en": "Bleaching",
+    "duration": 180,
+    "price": 1000,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "global-farg-axellangt-har",
+    "category": "farg",
+    "sv": "Global färg, axellångt hår",
+    "en": "All-over colour, medium",
+    "duration": 120,
+    "price": 1000,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "global-farg-kort-har",
+    "category": "farg",
+    "sv": "Global färg, kort hår",
+    "en": "All-over colour, short",
+    "duration": 105,
+    "price": 900,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "global-farg-langt-har",
+    "category": "farg",
+    "sv": "Global färg, långt hår",
+    "en": "All-over colour, long",
+    "duration": 150,
+    "price": 1200,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "ombre",
+    "category": "farg",
+    "sv": "Ombre",
+    "en": "Ombre",
+    "duration": 240,
+    "price": 1500,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "slingor-halvt-huvud",
+    "category": "farg",
+    "sv": "Slingor, halvt huvud",
+    "en": "Highlights, half head",
+    "duration": 180,
+    "price": 1200,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "slingor-helt-huvud",
+    "category": "farg",
+    "sv": "Slingor, helt huvud",
+    "en": "Highlights, full head",
+    "duration": 270,
+    "price": 1600,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [
+      "assets/services/img_6W04WZN4WJ92HS5NNQ6WMFZPCN.jpg"
+    ],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "toning-glansfarg",
+    "category": "farg",
+    "sv": "Toning / glansfärg",
+    "en": "Toner / gloss",
+    "duration": 60,
+    "price": 500,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "utvaxtfarg",
+    "category": "farg",
+    "sv": "Utväxtfärg",
+    "en": "Root colour",
+    "duration": 90,
+    "price": 700,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [
+      "assets/services/img_04MNBCKH358TKT09RJ74RDYJ20.jpg",
+      "assets/services/img_29YXSB6X409NKRZ5RKF5RVY37N.jpg"
+    ],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "balayage-toning-paket",
+    "category": "farg",
+    "sv": "Balayage + toning (paket)",
+    "en": "Balayage + toner (package)",
+    "duration": 300,
+    "price": 1800,
+    "maxConcurrent": 1,
+    "from": true,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "farg-toning",
+    "category": "farg",
+    "sv": "Färg + toning",
+    "en": "Colour + toner",
+    "duration": 150,
+    "price": 999,
+    "maxConcurrent": 1,
+    "from": true,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "global-farg-klippning",
+    "category": "farg",
+    "sv": "Global färg + klippning",
+    "en": "All-over colour + cut",
+    "duration": 165,
+    "price": 1200,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "utvaxtfarg-klippning",
+    "category": "farg",
+    "sv": "Utväxtfärg + klippning",
+    "en": "Root colour + cut",
+    "duration": 135,
+    "price": 900,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "keratinbehandling-axellangt-har",
+    "category": "behandling",
+    "sv": "Keratinbehandling, axellångt hår",
+    "en": "Keratin treatment, medium",
+    "duration": 300,
+    "price": 2000,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "keratinbehandling-extra-langt-har",
+    "category": "behandling",
+    "sv": "Keratinbehandling, extra långt hår",
+    "en": "Keratin treatment, extra long",
+    "duration": 420,
+    "price": 3500,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "keratinbehandling-kort-har",
+    "category": "behandling",
+    "sv": "Keratinbehandling, kort hår",
+    "en": "Keratin treatment, short",
+    "duration": 240,
+    "price": 1500,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
     "images": [
       "assets/services/img_3YPYCQZBR48DWSHN42J046RNKA.jpg"
     ],
-    "sumupId": "f871c66c-5d9d-4a2f-8e0d-7c6fd6fa87f3",
-    "sumupName": "Keratin"
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "keratinbehandling-langt-har",
+    "category": "behandling",
+    "sv": "Keratinbehandling, långt hår",
+    "en": "Keratin treatment, long",
+    "duration": 360,
+    "price": 2800,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "olaplex-bond-builder",
+    "category": "behandling",
+    "sv": "Olaplex (bond builder)",
+    "en": "Olaplex (bond builder)",
+    "duration": 45,
+    "price": 900,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
   },
   {
     "id": "permanent",
@@ -184,53 +476,226 @@ export const SERVICES = [
     "duration": 240,
     "price": 1000,
     "maxConcurrent": 1,
+    "from": false,
+    "package": false,
     "images": [
       "assets/services/img_6S6KB368R9976BC4JSV8NKEV0K.jpg"
     ],
-    "sumupId": "1ec01b23-8351-4351-823a-ffe56aa7ce42",
-    "sumupName": "Permanant /hår lockar, axellång hår"
+    "source": "sumup"
   },
   {
-    "id": "protein",
+    "id": "plex-flex-behandling",
     "category": "behandling",
-    "sv": "Proteinbehandling, axellångt hår",
-    "en": "Protein hair treatment, shoulder-length",
-    "duration": 240,
+    "sv": "Plex flex-behandling",
+    "en": "Plex flex treatment",
+    "duration": 45,
     "price": 1000,
     "maxConcurrent": 1,
-    "images": [
-      "assets/services/img_5FXRS499Q48VATS0BCE3NPJYAE.jpg"
-    ],
-    "sumupId": "cb23b463-34b8-4e15-be64-60ca9a6e81f6",
-    "sumupName": "Protein hair treatment, sholder length"
-  },
-  {
-    "id": "fiberplex-lang",
-    "category": "behandling",
-    "sv": "Fiberplex-behandling, axellångt hår",
-    "en": "Fiberplex treatment, shoulder-length or longer",
-    "duration": 45,
-    "price": 1500,
-    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
     "images": [],
-    "sumupId": "d3e57f1d-ed65-4cfa-a0a0-c2e186ca993d",
-    "sumupName": "Fiberplex Behandling axellång hår/ lite längre"
+    "source": "pricelist-2026-09"
   },
   {
-    "id": "fiberplex-kort",
+    "id": "plex-behandling-extra-langt-har",
     "category": "behandling",
-    "sv": "Fiberplex-behandling, kort hår",
-    "en": "Fiberplex treatment, short hair",
-    "duration": 45,
-    "price": 1000,
+    "sv": "Plex-behandling, extra långt hår",
+    "en": "Plex treatment, extra long",
+    "duration": 75,
+    "price": 2200,
     "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "plex-behandling-kort-har",
+    "category": "behandling",
+    "sv": "Plex-behandling, kort hår",
+    "en": "Plex treatment, short",
+    "duration": 45,
+    "price": 1200,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
     "images": [
       "assets/services/img_0CWZ4PDS769SRTG4CM65VJ8N1T.jpg",
       "assets/services/img_24DYDFXZ8Z9VPBE0MR6ZXSB6GC.jpg",
       "assets/services/img_7V24B74RC29NFRGJ939XW91ARY.jpg"
     ],
-    "sumupId": "2aa5eb5f-4dee-4b9a-a360-e2530deebc00",
-    "sumupName": "Fiberplex Behandling kort hår"
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "plex-behandling-langt-har",
+    "category": "behandling",
+    "sv": "Plex-behandling, långt hår",
+    "en": "Plex treatment, long",
+    "duration": 60,
+    "price": 1800,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "proteinbehandling-axellangt-har",
+    "category": "behandling",
+    "sv": "Proteinbehandling, axellångt hår",
+    "en": "Protein treatment, medium",
+    "duration": 180,
+    "price": 1200,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [
+      "assets/services/img_5FXRS499Q48VATS0BCE3NPJYAE.jpg"
+    ],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "proteinbehandling-extra-langt-har",
+    "category": "behandling",
+    "sv": "Proteinbehandling, extra långt hår",
+    "en": "Protein treatment, extra long",
+    "duration": 300,
+    "price": 2000,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "proteinbehandling-kort-har",
+    "category": "behandling",
+    "sv": "Proteinbehandling, kort hår",
+    "en": "Protein treatment, short",
+    "duration": 120,
+    "price": 800,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "proteinbehandling-langt-har",
+    "category": "behandling",
+    "sv": "Proteinbehandling, långt hår",
+    "en": "Protein treatment, long",
+    "duration": 240,
+    "price": 1600,
+    "maxConcurrent": 1,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "keratin-plex-combo",
+    "category": "behandling",
+    "sv": "Keratin + plex combo",
+    "en": "Keratin + plex combo",
+    "duration": 420,
+    "price": 3200,
+    "maxConcurrent": 1,
+    "from": true,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "keratinbehandling-farg",
+    "category": "behandling",
+    "sv": "Keratinbehandling + färg",
+    "en": "Keratin treatment + colour",
+    "duration": 420,
+    "price": 2800,
+    "maxConcurrent": 1,
+    "from": true,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "keratinbehandling-klippning",
+    "category": "behandling",
+    "sv": "Keratinbehandling + klippning",
+    "en": "Keratin treatment + cut",
+    "duration": 300,
+    "price": 2500,
+    "maxConcurrent": 1,
+    "from": true,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "plex-behandling-farg",
+    "category": "behandling",
+    "sv": "Plex-behandling + färg",
+    "en": "Plex treatment + colour",
+    "duration": 180,
+    "price": 2200,
+    "maxConcurrent": 1,
+    "from": true,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "plex-behandling-klippning",
+    "category": "behandling",
+    "sv": "Plex-behandling + klippning",
+    "en": "Plex treatment + cut",
+    "duration": 105,
+    "price": 1700,
+    "maxConcurrent": 1,
+    "from": true,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "protein-keratin-combo",
+    "category": "behandling",
+    "sv": "Protein + keratin combo",
+    "en": "Protein + keratin combo",
+    "duration": 420,
+    "price": 3500,
+    "maxConcurrent": 1,
+    "from": true,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "proteinbehandling-farg",
+    "category": "behandling",
+    "sv": "Proteinbehandling + färg",
+    "en": "Protein treatment + colour",
+    "duration": 300,
+    "price": 1800,
+    "maxConcurrent": 1,
+    "from": true,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "proteinbehandling-klippning",
+    "category": "behandling",
+    "sv": "Proteinbehandling + klippning",
+    "en": "Protein treatment + cut",
+    "duration": 225,
+    "price": 1500,
+    "maxConcurrent": 1,
+    "from": true,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
   },
   {
     "id": "tvatt-fon",
@@ -240,25 +705,12 @@ export const SERVICES = [
     "duration": 60,
     "price": 300,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [
       "assets/services/img_3F3QMW90NE8HSATYQ74792558R.jpg"
     ],
-    "sumupId": "3759d7c0-0a94-4710-b7ed-00ca92345e22",
-    "sumupName": "Hår tvätt och fön axellång hår"
-  },
-  {
-    "id": "plattang-lockar",
-    "category": "styling",
-    "sv": "Plattångslockar, kort hår",
-    "en": "Straightener curls, short hair",
-    "duration": 45,
-    "price": 300,
-    "maxConcurrent": 2,
-    "images": [
-      "assets/services/img_379866419383XAY4DM922AKB2H.jpg"
-    ],
-    "sumupId": "1f129030-ba0a-49d6-8528-166b9e9dacf1",
-    "sumupName": "Plattång lockar (kort hår)"
+    "source": "sumup"
   },
   {
     "id": "plattang-rakt",
@@ -268,11 +720,196 @@ export const SERVICES = [
     "duration": 45,
     "price": 300,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [
       "assets/services/img_3ASM2F4A6S8MFBHSVDF64ZC1ZA.jpg"
     ],
-    "sumupId": "0c3bc0a6-2dc9-4f6f-bc5e-7714e9a59dfc",
-    "sumupName": "Plattång rakt Styling ( kort hår)"
+    "source": "sumup"
+  },
+  {
+    "id": "plattang-lockar",
+    "category": "styling",
+    "sv": "Plattångslockar, kort hår",
+    "en": "Straightener curls, short hair",
+    "duration": 45,
+    "price": 300,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [
+      "assets/services/img_379866419383XAY4DM922AKB2H.jpg"
+    ],
+    "source": "sumup"
+  },
+  {
+    "id": "builder-gel-med-gellack",
+    "category": "naglar",
+    "sv": "Builder gel med gellack",
+    "en": "Builder gel with gel polish",
+    "duration": 105,
+    "price": 550,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "builder-gel-pa-naturliga-naglar",
+    "category": "naglar",
+    "sv": "Builder gel på naturliga naglar",
+    "en": "Builder gel on natural nails",
+    "duration": 90,
+    "price": 450,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "gellack-med-enkel-nail-art",
+    "category": "naglar",
+    "sv": "Gellack med enkel nail art",
+    "en": "Gel polish with simple nail art",
+    "duration": 60,
+    "price": 350,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "gellack-enfargad",
+    "category": "naglar",
+    "sv": "Gellack, enfärgad",
+    "en": "Gel polish, single colour",
+    "duration": 45,
+    "price": 300,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "klassisk-manikyr",
+    "category": "naglar",
+    "sv": "Klassisk manikyr",
+    "en": "Classic manicure",
+    "duration": 45,
+    "price": 250,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "manikyr-med-gellack",
+    "category": "naglar",
+    "sv": "Manikyr med gellack",
+    "en": "Manicure with gel polish",
+    "duration": 60,
+    "price": 350,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "nail-art-avancerad-design",
+    "category": "naglar",
+    "sv": "Nail art, avancerad design",
+    "en": "Nail art, advanced design",
+    "duration": 30,
+    "price": 100,
+    "maxConcurrent": 2,
+    "from": true,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "nail-art-enkel-design",
+    "category": "naglar",
+    "sv": "Nail art, enkel design",
+    "en": "Nail art, simple design",
+    "duration": 15,
+    "price": 50,
+    "maxConcurrent": 2,
+    "from": true,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "nytt-set-kort-langd",
+    "category": "naglar",
+    "sv": "Nytt set, kort längd",
+    "en": "New set, short",
+    "duration": 90,
+    "price": 450,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "nytt-set-lang-langd",
+    "category": "naglar",
+    "sv": "Nytt set, lång längd",
+    "en": "New set, long",
+    "duration": 120,
+    "price": 650,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "nytt-set-medium-langd",
+    "category": "naglar",
+    "sv": "Nytt set, medium längd",
+    "en": "New set, medium",
+    "duration": 105,
+    "price": 550,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "pafyllning-inom-3-veckor",
+    "category": "naglar",
+    "sv": "Påfyllning inom 3 veckor",
+    "en": "Infill within 3 weeks",
+    "duration": 75,
+    "price": 400,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "pafyllning-inom-4-veckor",
+    "category": "naglar",
+    "sv": "Påfyllning inom 4 veckor",
+    "en": "Infill within 4 weeks",
+    "duration": 90,
+    "price": 500,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
   },
   {
     "id": "browlift",
@@ -282,11 +919,12 @@ export const SERVICES = [
     "duration": 60,
     "price": 450,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [
       "assets/services/img_4EZ0S6C8QB924SHB589V1YKQRH.jpg"
     ],
-    "sumupId": "76024f6b-71e1-4e76-bf4e-b1fe6346c89c",
-    "sumupName": "Browlift"
+    "source": "sumup"
   },
   {
     "id": "lashlift",
@@ -296,25 +934,55 @@ export const SERVICES = [
     "duration": 60,
     "price": 450,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [
       "assets/services/img_53Y8T3VNMK9YCR8EZCJ25B2K0N.jpg"
     ],
-    "sumupId": "abb68bd8-52b8-4e1b-ad5a-d1454d9528af",
-    "sumupName": "Lashlift"
+    "source": "sumup"
   },
   {
-    "id": "bryn-trad",
+    "id": "tradning-hela-ansiktet",
     "category": "bryn",
-    "sv": "Ögonbrynsformning med tråd",
-    "en": "Eyebrow shaping with thread",
+    "sv": "Trådning hela ansiktet",
+    "en": "Full face threading",
+    "duration": 30,
+    "price": 300,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [
+      "assets/services/img_5RMAC56F8W9E5VGXFSHRH7YZ2Q.jpg"
+    ],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "tradning-overlapp",
+    "category": "bryn",
+    "sv": "Trådning överläpp",
+    "en": "Upper lip threading",
+    "duration": 10,
+    "price": 100,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "ogonbrynsformning",
+    "category": "bryn",
+    "sv": "Ögonbrynsformning",
+    "en": "Eyebrow shaping",
     "duration": 15,
     "price": 150,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [
       "assets/services/img_5A1P43BQZ29BJVW4HAHY2YMJY1.jpg"
     ],
-    "sumupId": "e0fe993d-1971-4da3-b59c-8710ddef87c6",
-    "sumupName": "Eyebrow shape with thread"
+    "source": "pricelist-2026-09"
   },
   {
     "id": "bryn-farg",
@@ -324,21 +992,101 @@ export const SERVICES = [
     "duration": 45,
     "price": 250,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [],
-    "sumupId": "f6765bfd-d7f4-4500-913e-d48d199e4df1",
-    "sumupName": "Ögonbryn form + färg"
+    "source": "sumup"
   },
   {
-    "id": "vax-armar",
+    "id": "ansiktsvaxning-hela-ansiktet",
     "category": "vaxning",
-    "sv": "Vaxning, båda armarna",
-    "en": "Both arms wax",
-    "duration": 60,
-    "price": 500,
+    "sv": "Ansiktsvaxning, hela ansiktet",
+    "en": "Full face wax",
+    "duration": 45,
+    "price": 300,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [],
-    "sumupId": "ba708627-6aec-45ec-bade-1599c1be45d6",
-    "sumupName": "Both Arms Wax"
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "armhalsvaxning",
+    "category": "vaxning",
+    "sv": "Armhålsvaxning",
+    "en": "Underarm wax",
+    "duration": 20,
+    "price": 150,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "hakvaxning",
+    "category": "vaxning",
+    "sv": "Hakvaxning",
+    "en": "Chin wax",
+    "duration": 15,
+    "price": 100,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "magvaxning",
+    "category": "vaxning",
+    "sv": "Magvaxning",
+    "en": "Stomach wax",
+    "duration": 30,
+    "price": 250,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "pannvaxning",
+    "category": "vaxning",
+    "sv": "Pannvaxning",
+    "en": "Forehead wax",
+    "duration": 15,
+    "price": 100,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "ryggvaxning",
+    "category": "vaxning",
+    "sv": "Ryggvaxning",
+    "en": "Back wax",
+    "duration": 45,
+    "price": 350,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "vaxning-bada-fulla-armar",
+    "category": "vaxning",
+    "sv": "Vaxning, båda fulla armar",
+    "en": "Both full arms wax",
+    "duration": 60,
+    "price": 400,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
   },
   {
     "id": "vax-arm",
@@ -348,71 +1096,337 @@ export const SERVICES = [
     "duration": 45,
     "price": 300,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [],
-    "sumupId": "fc35427e-ca49-409c-9945-8a19373f81bb",
-    "sumupName": "One Full Arm Wax"
+    "source": "sumup"
   },
   {
-    "id": "vax-ben",
+    "id": "vaxning-fulla-ben",
     "category": "vaxning",
-    "sv": "Vaxning, båda benen",
-    "en": "Both legs wax",
+    "sv": "Vaxning, fulla ben",
+    "en": "Full legs wax",
     "duration": 90,
-    "price": 800,
+    "price": 500,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [],
-    "sumupId": "14ce68be-6f8a-4462-aac0-793ec2c7b79a",
-    "sumupName": "Both Legs Wax"
+    "source": "pricelist-2026-09"
   },
   {
-    "id": "vax-ben-armar",
+    "id": "vaxning-halva-armar",
     "category": "vaxning",
-    "sv": "Vaxning, ben + armar",
-    "en": "Legs + arms wax",
-    "duration": 120,
-    "price": 1200,
+    "sv": "Vaxning, halva armar",
+    "en": "Half arms wax",
+    "duration": 30,
+    "price": 200,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [],
-    "sumupId": "4b130cd0-4dc0-40d8-a323-f4a9845f06f2",
-    "sumupName": "Both legs + Both Arms Wax"
+    "source": "pricelist-2026-09"
   },
   {
-    "id": "vax-armhalor",
+    "id": "vaxning-halva-ben",
     "category": "vaxning",
-    "sv": "Vaxning, armhålor",
-    "en": "Underarm wax",
+    "sv": "Vaxning, halva ben",
+    "en": "Half legs wax",
     "duration": 45,
     "price": 250,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [],
-    "sumupId": "74f305e0-6422-4b91-acdf-4acdf2b3efab",
-    "sumupName": "Underarms wax"
+    "source": "pricelist-2026-09"
   },
   {
-    "id": "vax-ansikte",
+    "id": "overlappsvaxning",
     "category": "vaxning",
-    "sv": "Ansiktsvaxning",
-    "en": "Face wax",
-    "duration": 45,
-    "price": 300,
+    "sv": "Överläppsvaxning",
+    "en": "Upper lip wax",
+    "duration": 15,
+    "price": 100,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [],
-    "sumupId": "0a7c9fc9-d3ff-4095-882f-0ec685d9b601",
-    "sumupName": "Face Wax"
+    "source": "pricelist-2026-09"
   },
   {
-    "id": "trad-ansikte",
+    "id": "ansikte-plus-hela-ansiktet-brynformning",
     "category": "vaxning",
-    "sv": "Ansiktshår med tråd (hela ansiktet, utan bryn)",
-    "en": "Facial hair removal with thread (full face, excl. brows)",
+    "sv": "Ansikte plus: hela ansiktet + brynformning",
+    "en": "Face plus: full face + brow shape",
+    "duration": 60,
+    "price": 350,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "ansiktspaket-overlapp-haka-panna",
+    "category": "vaxning",
+    "sv": "Ansiktspaket: överläpp + haka + panna",
+    "en": "Face package: lip + chin + forehead",
+    "duration": 45,
+    "price": 250,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "arm-ben-combo-bada-fulla-armar-fulla-ben",
+    "category": "vaxning",
+    "sv": "Arm & ben combo: båda fulla armar + fulla ben",
+    "en": "Arm & leg combo: both full arms + full legs",
+    "duration": 120,
+    "price": 750,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "armpaket-bada-fulla-armar-armhalor",
+    "category": "vaxning",
+    "sv": "Armpaket: båda fulla armar + armhålor",
+    "en": "Arm package: both full arms + underarms",
+    "duration": 75,
+    "price": 500,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "benpaket-fulla-ben-armhalor",
+    "category": "vaxning",
+    "sv": "Benpaket: fulla ben + armhålor",
+    "en": "Leg package: full legs + underarms",
+    "duration": 105,
+    "price": 600,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "ansiktsmask",
+    "category": "ansikte",
+    "sv": "Ansiktsmask",
+    "en": "Face mask",
+    "duration": 20,
+    "price": 150,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "ansiktsmassage",
+    "category": "ansikte",
+    "sv": "Ansiktsmassage",
+    "en": "Face massage",
     "duration": 30,
     "price": 250,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "anti-aging-facial",
+    "category": "ansikte",
+    "sv": "Anti-aging facial",
+    "en": "Anti-ageing facial",
+    "duration": 75,
+    "price": 900,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "blackhead-removal",
+    "category": "ansikte",
+    "sv": "Blackhead removal",
+    "en": "Blackhead removal",
+    "duration": 30,
+    "price": 200,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "clean-up-facial",
+    "category": "ansikte",
+    "sv": "Clean up facial",
+    "en": "Clean up facial",
+    "duration": 30,
+    "price": 350,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "de-tan-facial",
+    "category": "ansikte",
+    "sv": "De-tan facial",
+    "en": "De-tan facial",
+    "duration": 60,
+    "price": 700,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "deep-cleansing-facial",
+    "category": "ansikte",
+    "sv": "Deep cleansing facial",
+    "en": "Deep cleansing facial",
+    "duration": 75,
+    "price": 950,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "fruit-facial",
+    "category": "ansikte",
+    "sv": "Fruit facial",
+    "en": "Fruit facial",
+    "duration": 45,
+    "price": 500,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "gold-facial",
+    "category": "ansikte",
+    "sv": "Gold facial",
+    "en": "Gold facial",
+    "duration": 60,
+    "price": 800,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "hydrating-facial",
+    "category": "ansikte",
+    "sv": "Hydrating facial",
+    "en": "Hydrating facial",
+    "duration": 60,
+    "price": 750,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "simple-facial",
+    "category": "ansikte",
+    "sv": "Simple facial",
+    "en": "Simple facial",
+    "duration": 45,
+    "price": 400,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [
-      "assets/services/img_5RMAC56F8W9E5VGXFSHRH7YZ2Q.jpg"
+      "assets/services/img_4WM65T5WKQ8R48RN68ARGQDG4E.jpg"
     ],
-    "sumupId": "7f595f31-bcb2-4c74-90ef-2789d977d2c8",
-    "sumupName": "Facial hair remove with thread  ( Full Face without Eyebrows shap)"
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "whitening-facial",
+    "category": "ansikte",
+    "sv": "Whitening facial",
+    "en": "Whitening facial",
+    "duration": 60,
+    "price": 700,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": false,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "complete-facial-paket",
+    "category": "ansikte",
+    "sv": "Complete facial-paket",
+    "en": "Complete facial package",
+    "duration": 120,
+    "price": 1200,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "gold-facial-ansiktsmassage",
+    "category": "ansikte",
+    "sv": "Gold facial + ansiktsmassage",
+    "en": "Gold facial + face massage",
+    "duration": 90,
+    "price": 950,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "simple-facial-ansiktsmassage",
+    "category": "ansikte",
+    "sv": "Simple facial + ansiktsmassage",
+    "en": "Simple facial + face massage",
+    "duration": 75,
+    "price": 550,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
+  },
+  {
+    "id": "whitening-facial-bryn",
+    "category": "ansikte",
+    "sv": "Whitening facial + bryn",
+    "en": "Whitening facial + brows",
+    "duration": 75,
+    "price": 800,
+    "maxConcurrent": 2,
+    "from": false,
+    "package": true,
+    "images": [],
+    "source": "pricelist-2026-09"
   },
   {
     "id": "henna",
@@ -422,11 +1436,12 @@ export const SERVICES = [
     "duration": 45,
     "price": 100,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [
       "assets/services/img_0Z56TB48KM92ZVDKCTN3SR6357.jpg"
     ],
-    "sumupId": "0eeff0d1-f647-495e-9142-f86034cb47c6",
-    "sumupName": "Henna (one hand)"
+    "source": "sumup"
   },
   {
     "id": "henna-tatuering",
@@ -436,24 +1451,11 @@ export const SERVICES = [
     "duration": 30,
     "price": 100,
     "maxConcurrent": 2,
+    "from": false,
+    "package": false,
     "images": [
       "assets/services/img_2G3Z9A156N82JA0ERQ03A3FQD0.jpg"
     ],
-    "sumupId": "db2ab32f-ee63-4d98-afb0-7016c02a786e",
-    "sumupName": "One hand Henna  Teto (Simple)"
-  },
-  {
-    "id": "ansiktsbehandling",
-    "category": "ansikte",
-    "sv": "Enkel ansiktsbehandling",
-    "en": "Simple facial",
-    "duration": 45,
-    "price": 600,
-    "maxConcurrent": 2,
-    "images": [
-      "assets/services/img_4WM65T5WKQ8R48RN68ARGQDG4E.jpg"
-    ],
-    "sumupId": "6e4d6460-9c7b-40f1-a927-040b5cf8d0a6",
-    "sumupName": "Simple Facial"
+    "source": "sumup"
   }
 ];

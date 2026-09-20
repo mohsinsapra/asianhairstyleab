@@ -29,10 +29,11 @@ export const STRINGS = {
     'stats.years': 'dagar i veckan',
 
     'services.title': 'Tjänster & priser',
-    'services.lead': 'Alla priser i kronor, inklusive moms. Tiden som visas är den tid vi bokar för dig.',
+    'services.lead': 'Alla priser i kronor, inklusive moms. Tiden som visas är den tid vi bokar för dig. Priser märkta “från” beror på hårets längd och tjocklek och bekräftas i salongen.',
     'services.all': 'Alla',
     'services.book': 'Boka',
-    'services.from': 'fr.',
+    'services.from': 'från',
+    'services.package': 'Paket',
 
     'booking.title': 'Boka din tid',
     'booking.lead': 'Fyra steg, tar en minut. Du får en bekräftelse direkt.',
@@ -128,10 +129,11 @@ export const STRINGS = {
     'stats.years': 'days a week',
 
     'services.title': 'Services & prices',
-    'services.lead': 'All prices in Swedish kronor, VAT included. The time shown is the time we reserve for you.',
+    'services.lead': 'All prices in Swedish kronor, VAT included. The time shown is the time we reserve for you. Prices marked “from” depend on hair length and thickness and are confirmed in the salon.',
     'services.all': 'All',
     'services.book': 'Book',
     'services.from': 'from',
+    'services.package': 'Package',
 
     'booking.title': 'Book your appointment',
     'booking.lead': 'Four steps, takes a minute. You get a confirmation straight away.',
