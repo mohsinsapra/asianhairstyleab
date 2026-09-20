@@ -618,7 +618,7 @@ export const SERVICES = [
     "sv": "Ansiktsvaxning, hela ansiktet",
     "en": "Full face wax",
     "duration": 45,
-    "price": 300,
+    "price": 350,
     "maxConcurrent": 2
   },
   {

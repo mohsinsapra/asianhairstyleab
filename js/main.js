@@ -9,14 +9,15 @@ import { serviceIcon } from './icons.js';
 const $ = (sel) => document.querySelector(sel);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-let activeCat = 'all';
+let activeCat = null;   // null = show the category overview
+let query = '';
 
 function boot() {
   initLang();
   wireLinks();
   buildHeroArt();
   buildMarquee();
-  buildChips();
+  wireServices();
   buildJsonLd();
   initBooking();
   loadReviews();
@@ -75,11 +76,13 @@ function applyLang() {
     esc(t('hero.badge', { rating, count: BUSINESS.reviewCount }));
   $('#reviewsLead').textContent = t('reviews.lead', { rating, count: BUSINESS.reviewCount });
 
+  $('#svcSearch').placeholder = t('services.searchPh');
+  $('#svcSearch').setAttribute('aria-label', t('services.searchLabel'));
+  $('#svcClear').setAttribute('aria-label', t('services.clear'));
   renderStatus();
   renderHours();
   if (reviewData.length) renderReviews();
   renderServices();
-  buildChips();
   buildMarquee();
 }
 
@@ -139,59 +142,129 @@ function renderStatus() {
 
 // ------------------------------------------------------------------ services
 
-function buildChips() {
-  const box = $('#catChips');
-  const cats = [{ id: 'all', label: t('services.all') }]
-    .concat(CATEGORIES.map((c) => ({ id: c.id, label: getLang() === 'en' ? c.en : c.sv })));
+/* ---------------------------------------------------------------- services
 
-  box.innerHTML = cats.map((c) =>
-    `<button type="button" class="chip" role="tab" data-cat="${esc(c.id)}" aria-selected="${c.id === activeCat}">${esc(c.label)}</button>`
-  ).join('');
+   103 services is far too many to scroll. The default view is therefore nine
+   category cards; picking one drills into that category, and the search box
+   cuts across all of them at once for people who already know what they want.
+   ------------------------------------------------------------------------- */
 
-  box.querySelectorAll('.chip').forEach((b) => {
-    b.onclick = () => {
-      activeCat = b.dataset.cat;
-      buildChips();
-      renderServices();
-    };
+const norm = (v) => v.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  .replace(/å|ä/g, 'a').replace(/ö/g, 'o');
+
+function catRows(id) {
+  return SERVICES.filter((s) => s.category === id);
+}
+
+function fromPrice(rows) {
+  return Math.min(...rows.map((r) => r.price));
+}
+
+function countLabel(n) {
+  return n === 1 ? t('services.count1') : t('services.count', { n });
+}
+
+function matches(service, q) {
+  const cat = CATEGORIES.find((c) => c.id === service.category);
+  const hay = norm([service.sv, service.en, cat?.sv, cat?.en].join(' '));
+  return q.split(/\s+/).filter(Boolean).every((w) => hay.includes(w));
+}
+
+function wireServices() {
+  const input = $('#svcSearch');
+  const clear = $('#svcClear');
+
+  input.addEventListener('input', () => {
+    query = input.value.trim();
+    clear.hidden = !query;
+    renderServices();
   });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && query) { input.value = ''; query = ''; clear.hidden = true; renderServices(); }
+  });
+  clear.addEventListener('click', () => {
+    input.value = ''; query = ''; clear.hidden = true; renderServices(); input.focus();
+  });
+}
+
+function openCategory(id) {
+  activeCat = id;
+  renderServices();
+  $('#tjanster').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function renderServices() {
   const list = $('#serviceList');
+  const crumb = $('#svcCrumb');
   const en = getLang() === 'en';
-  const shown = CATEGORIES.filter((c) => activeCat === 'all' || c.id === activeCat);
 
-  list.innerHTML = shown.map((cat) => {
-    const rows = SERVICES.filter((s) => s.category === cat.id);
+  // 1. Searching cuts across every category.
+  if (query) {
+    const q = norm(query);
+    const hits = SERVICES.filter((s) => matches(s, q));
+    crumb.hidden = false;
+    crumb.innerHTML = `<span>${esc(hits.length === 1
+      ? t('services.results1', { q: query })
+      : t('services.results', { n: hits.length, q: query }))}</span>`;
+
+    list.innerHTML = hits.length
+      ? hits.map(serviceRow).join('')
+      : `<p class="empty">${esc(t('services.noResults', { q: query }))}</p>`;
+    bindRows(list);
+    return;
+  }
+
+  // 2. A category is open.
+  if (activeCat) {
+    const cat = CATEGORIES.find((c) => c.id === activeCat);
+    const rows = catRows(activeCat);
+    crumb.hidden = false;
+    crumb.innerHTML = `<button type="button" class="crumb__back" data-all>&lsaquo; ${esc(t('services.browseAll'))}</button>
+      <span class="crumb__here" style="--cat:var(--c-${esc(cat.id)})">${esc(en ? cat.en : cat.sv)} <i>${esc(countLabel(rows.length))}</i></span>`;
+    list.innerHTML = `<p class="catgroup__blurb">${esc(en ? cat.blurbEn : cat.blurbSv)}</p>`
+      + rows.map(serviceRow).join('');
+    crumb.querySelector('[data-all]').onclick = () => { activeCat = null; renderServices(); };
+    bindRows(list);
+    return;
+  }
+
+  // 3. Default: the nine category cards.
+  crumb.hidden = true;
+  crumb.innerHTML = '';
+  list.innerHTML = `<div class="catgrid">` + CATEGORIES.map((c) => {
+    const rows = catRows(c.id);
     if (!rows.length) return '';
     return `
-      <div class="catgroup" style="--cat:var(--c-${cat.id})">
-        <div class="catgroup__head">
-          <h3>${esc(en ? cat.en : cat.sv)}</h3>
-          <span>${rows.length} ${esc(en ? 'services' : 'tjänster')}</span>
-        </div>
-        <p class="catgroup__blurb">${esc(en ? cat.blurbEn : cat.blurbSv)}</p>
-        ${rows.map((s) => `
-          <article class="srv" style="--cat:var(--c-${cat.id})">
-            ${s.images[0]
-              ? `<div class="srv__img" style="background-image:url('${esc(s.images[0])}')"></div>`
-              : `<div class="srv__img srv__img--icon">${serviceIcon(s)}</div>`}
-            <div>
-              <div class="srv__name">${esc(sname(s))}${s.package ? `<span class="srv__tag">${esc(t('services.package'))}</span>` : ''}</div>
-              <div class="srv__meta">${esc(humanDuration(s.duration))}</div>
-            </div>
-            <div class="srv__price">${s.from ? `<small>${esc(t('services.from'))}</small>` : ''}${s.price} kr</div>
-            <button type="button" class="btn btn--primary srv__btn" data-book="${esc(s.id)}">${esc(t('services.book'))}</button>
-          </article>`).join('')}
-      </div>`;
-  }).join('');
+      <button type="button" class="catcard" data-cat="${esc(c.id)}" style="--cat:var(--c-${esc(c.id)})">
+        <span class="catcard__icon">${serviceIcon({ category: c.id, id: '' })}</span>
+        <span class="catcard__name">${esc(en ? c.en : c.sv)}</span>
+        <span class="catcard__meta">${esc(countLabel(rows.length))}</span>
+        <span class="catcard__from">${esc(t('services.fromPrice', { p: fromPrice(rows) }))}</span>
+      </button>`;
+  }).join('') + `</div>`;
 
-  list.querySelectorAll('[data-book]').forEach((b) => {
-    b.onclick = () => startWith(b.dataset.book);
-  });
+  list.querySelectorAll('[data-cat]').forEach((b) => { b.onclick = () => openCategory(b.dataset.cat); });
 }
 
+function serviceRow(s) {
+  const cat = s.category;
+  return `
+    <article class="srv" style="--cat:var(--c-${esc(cat)})">
+      ${s.images[0]
+        ? `<div class="srv__img" style="background-image:url('${esc(s.images[0])}')"></div>`
+        : `<div class="srv__img srv__img--icon">${serviceIcon(s)}</div>`}
+      <div>
+        <div class="srv__name">${esc(sname(s))}${s.package ? `<span class="srv__tag">${esc(t('services.package'))}</span>` : ''}</div>
+        <div class="srv__meta">${esc(humanDuration(s.duration))}</div>
+      </div>
+      <div class="srv__price">${s.from ? `<small>${esc(t('services.from'))}</small>` : ''}${s.price} kr</div>
+      <button type="button" class="btn btn--primary srv__btn" data-book="${esc(s.id)}">${esc(t('services.book'))}</button>
+    </article>`;
+}
+
+function bindRows(root) {
+  root.querySelectorAll('[data-book]').forEach((b) => { b.onclick = () => startWith(b.dataset.book); });
+}
 
 // ------------------------------------------------------------------ reviews
 

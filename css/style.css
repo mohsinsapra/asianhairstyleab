@@ -265,15 +265,90 @@ a { color: inherit; }
 
 .services { background: var(--surface); border-block: 1px solid var(--line); }
 
-.chips { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 28px; }
-.chip {
-  background: var(--ground); border: 1.5px solid var(--line); color: var(--ink-soft);
-  border-radius: var(--r-pill); padding: 9px 16px;
-  font-family: var(--body); font-size: 14px; font-weight: 600; cursor: pointer;
-  min-height: 42px; transition: all .15s ease;
+/* search ------------------------------------------------------------------ */
+
+.search { position: relative; margin-bottom: 22px; max-width: 520px; }
+.search svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--ink-faint); pointer-events: none; }
+.search input {
+  width: 100%; padding: 14px 44px 14px 46px;
+  border: 1.5px solid var(--line); border-radius: var(--r-pill);
+  background: var(--ground); font-family: var(--body); font-size: 16px; color: var(--ink);
+  -webkit-appearance: none; appearance: none;
 }
-.chip:hover { border-color: var(--ink-faint); color: var(--ink); }
-.chip[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.search input::-webkit-search-cancel-button { display: none; }
+.search input::placeholder { color: var(--ink-faint); }
+.search input:focus { outline: none; border-color: var(--fuchsia); background: var(--surface); }
+.search button {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; border: 0; border-radius: 50%; cursor: pointer;
+  background: var(--line); color: var(--ink-soft); font-size: 19px; line-height: 1;
+  display: grid; place-items: center;
+}
+.search button:hover { background: var(--ink); color: #fff; }
+/* A class selector with display:grid outranks the UA's [hidden] rule. */
+.search button[hidden] { display: none; }
+
+/* category overview ------------------------------------------------------- */
+
+.catgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 12px; }
+
+.catcard {
+  display: grid; grid-template-areas: 'icon from' 'name name' 'meta meta';
+  grid-template-columns: auto auto; justify-content: start; align-items: center;
+  gap: 4px 12px; text-align: left; cursor: pointer;
+  padding: 18px; border: 1.5px solid var(--line); border-radius: var(--r-md);
+  background: var(--surface); font-family: var(--body); color: var(--ink);
+  transition: border-color .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+.catcard:hover { border-color: var(--cat); box-shadow: var(--shadow); transform: translateY(-2px); }
+
+.catcard__icon {
+  grid-area: icon; display: grid; place-items: center;
+  width: 46px; height: 46px; border-radius: 13px; color: var(--cat);
+  background: color-mix(in srgb, var(--cat) 12%, #fff);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cat) 22%, transparent);
+}
+.catcard__icon svg { width: 56%; height: 56%; }
+.catcard__from {
+  grid-area: from; justify-self: end; align-self: start;
+  font-size: 12.5px; font-weight: 600; color: var(--cat);
+  background: color-mix(in srgb, var(--cat) 10%, #fff);
+  padding: 4px 10px; border-radius: var(--r-pill); white-space: nowrap;
+}
+.catcard__name {
+  grid-area: name; font-family: var(--display); font-size: 18.5px; font-weight: 700;
+  letter-spacing: -.02em; margin-top: 12px;
+}
+.catcard__meta { grid-area: meta; font-size: 13px; color: var(--ink-faint); }
+
+/* breadcrumb -------------------------------------------------------------- */
+
+.crumb { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 18px; }
+.crumb[hidden] { display: none; }
+.crumb__back {
+  border: 1.5px solid var(--line); background: var(--surface); color: var(--ink-soft);
+  border-radius: var(--r-pill); padding: 8px 15px; cursor: pointer;
+  font-family: var(--body); font-size: 14px; font-weight: 600; min-height: 40px;
+}
+.crumb__back:hover { border-color: var(--ink); color: var(--ink); }
+.crumb__here { font-family: var(--display); font-size: 21px; font-weight: 700; letter-spacing: -.02em; }
+.crumb__here::before {
+  content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 3px;
+  background: var(--cat, var(--fuchsia)); margin-right: 9px; transform: translateY(-2px);
+}
+.crumb__here i { font-style: normal; font-family: var(--body); font-size: 13.5px; font-weight: 500; color: var(--ink-faint); margin-left: 6px; }
+.crumb > span:only-child { font-size: 15px; color: var(--ink-soft); }
+
+/* Two columns on a phone: nine stacked cards is a lot of thumb travel. */
+@media (max-width: 560px) {
+  .catgrid, .catgrid--wizard { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .catcard { padding: 13px; }
+  .catcard__icon { width: 38px; height: 38px; border-radius: 11px; }
+  .catcard__name { font-size: 15px; margin-top: 9px; }
+  .catcard__meta { font-size: 12px; }
+  .catcard__from { font-size: 11px; padding: 3px 8px; }
+  .crumb__here { font-size: 18px; }
+}
 
 .catgroup { margin-bottom: 44px; }
 .catgroup:last-child { margin-bottom: 0; }
@@ -384,6 +459,14 @@ a { color: inherit; }
 .pickitem b { font-size: 15px; font-weight: 600; display: block; line-height: 1.3; }
 .pickitem small { font-size: 12.5px; color: var(--ink-faint); }
 .pickitem i { font-style: normal; font-family: var(--display); font-weight: 700; font-size: 17px; }
+
+.search--wizard { margin-bottom: 16px; max-width: none; }
+.search--wizard input { padding: 12px 40px 12px 42px; font-size: 15px; }
+.catgrid--wizard { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+.catgrid--wizard .catcard { padding: 14px; }
+.catgrid--wizard .catcard__name { font-size: 16px; margin-top: 10px; }
+.pick__count { margin: 0 0 12px; font-size: 14px; color: var(--ink-soft); }
+.pickitem i em { font-style: normal; font-family: var(--body); font-size: 12px; font-weight: 500; color: var(--ink-faint); }
 
 /* step 2 — calendar */
 .cal__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }

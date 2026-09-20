@@ -104,7 +104,17 @@
         <p data-i18n="services.lead">Alla priser i kronor, inklusive moms. Tiden som visas är den tid vi bokar för dig.</p>
       </header>
 
-      <div class="chips" id="catChips" role="tablist" aria-label="Kategorier"></div>
+      <div class="search">
+        <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
+          <circle cx="11" cy="11" r="6.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <path d="m16 16 4.4 4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <input id="svcSearch" type="search" autocomplete="off" spellcheck="false"
+               aria-label="Sök tjänst" placeholder="Sök tjänst, t.ex. klippning eller keratin">
+        <button type="button" id="svcClear" aria-label="Rensa sökning" hidden>&times;</button>
+      </div>
+
+      <nav id="svcCrumb" class="crumb" hidden aria-label="Kategori"></nav>
       <div id="serviceList"></div>
     </div>
   </section>

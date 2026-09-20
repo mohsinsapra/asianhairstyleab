@@ -1,5 +1,6 @@
 import { BUSINESS, HOURS, BOOKING, CLOSED_DATES } from './config.js';
 import { SERVICES, CATEGORIES } from './services.js';
+import { serviceIcon } from './icons.js';
 import { t, sname, getLang, locale } from './i18n.js';
 import { toDateStr, addDays, dayOfWeek, hhmm, humanDuration, candidateSlots, wallToInstant } from './time.js';
 
@@ -10,6 +11,8 @@ const state = {
   startMin: null,
   month: null,        // 'YYYY-MM-01' — the month the calendar is showing
   slotsByDate: {},    // 'YYYY-MM-DD' -> [{min,label}]
+  pickCat: null,      // which category the service picker is showing
+  pickQuery: '',      // search text inside the service picker
   loading: false,
   offline: false,     // true when the API can't be reached; falls back to opening hours
   sending: false,
@@ -35,6 +38,8 @@ export function startWith(serviceId) {
   state.startMin = null;
   state.result = null;
   state.error = null;
+  state.pickCat = svc.category;
+  state.pickQuery = '';
   state.step = 2;
   state.month = monthStart(toDateStr());
   render();
@@ -207,36 +212,106 @@ function nav({ back, next, nextLabel, nextDisabled }) {
   return wrap;
 }
 
-// step 1 — pick a service
+// step 1 — pick a service: category first, because a flat list of 103 is unusable
+const normq = (v) => v.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  .replace(/å|ä/g, 'a').replace(/ö/g, 'o');
+
 function stepService() {
   const box = el('<div></div>');
-  box.appendChild(el(`<h3>${esc(t('booking.pickService'))}</h3>`));
+  const en = getLang() === 'en';
 
-  const list = el('<div class="pick"></div>');
-  for (const cat of CATEGORIES) {
-    const rows = SERVICES.filter((s) => s.category === cat.id);
-    if (!rows.length) continue;
-    list.appendChild(el(`<h4 style="margin:14px 0 4px;font:600 13px var(--body);color:var(--ink-faint)">${esc(getLang() === 'en' ? cat.en : cat.sv)}</h4>`));
-    for (const s of rows) {
-      const btn = el(`
-        <button type="button" class="pickitem" style="--cat:${catColor(s.category)}"
-                aria-pressed="${state.service?.id === s.id}">
-          <span><b>${esc(sname(s))}</b><small>${esc(humanDuration(s.duration))}</small></span>
-          <i>${s.price} kr</i>
-        </button>`);
-      btn.onclick = () => {
-        state.service = s;
-        state.date = null;
-        state.startMin = null;
-        state.step = 2;
-        render();
-        loadMonth();
-      };
-      list.appendChild(btn);
-    }
+  box.appendChild(el(`<h3>${esc(state.pickCat || state.pickQuery ? t('booking.pickService') : t('services.pickCat'))}</h3>`));
+
+  // Search cuts straight to a service from any category.
+  const search = el(`
+    <div class="search search--wizard">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <circle cx="11" cy="11" r="6.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="m16 16 4.4 4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <input type="search" autocomplete="off" spellcheck="false"
+             aria-label="${esc(t('services.searchLabel'))}"
+             placeholder="${esc(t('services.searchPh'))}" value="${esc(state.pickQuery)}">
+      <button type="button" aria-label="${esc(t('services.clear'))}"${state.pickQuery ? '' : ' hidden'}>&times;</button>
+    </div>`);
+  const input = search.querySelector('input');
+  const clearBtn = search.querySelector('button');
+  input.addEventListener('input', () => {
+    state.pickQuery = input.value.trim();
+    render();
+    // Keep focus and caret where the customer left them.
+    const next = body.querySelector('.search--wizard input');
+    if (next) { next.focus(); next.setSelectionRange(next.value.length, next.value.length); }
+  });
+  clearBtn.onclick = () => { state.pickQuery = ''; render(); };
+  box.appendChild(search);
+
+  const rows = (list) => {
+    const wrap = el('<div class="pick"></div>');
+    for (const s of list) wrap.appendChild(pickItem(s));
+    return wrap;
+  };
+
+  if (state.pickQuery) {
+    const q = normq(state.pickQuery);
+    const hits = SERVICES.filter((s) => {
+      const cat = CATEGORIES.find((c) => c.id === s.category);
+      const hay = normq([s.sv, s.en, cat?.sv, cat?.en].join(' '));
+      return q.split(/\s+/).filter(Boolean).every((w) => hay.includes(w));
+    });
+    box.appendChild(el(`<p class="pick__count">${esc(hits.length === 1
+      ? t('services.results1', { q: state.pickQuery })
+      : t('services.results', { n: hits.length, q: state.pickQuery }))}</p>`));
+    box.appendChild(hits.length ? rows(hits)
+      : el(`<p class="empty">${esc(t('services.noResults', { q: state.pickQuery }))}</p>`));
+    return box;
   }
-  box.appendChild(list);
+
+  if (state.pickCat) {
+    const cat = CATEGORIES.find((c) => c.id === state.pickCat);
+    const list = SERVICES.filter((s) => s.category === state.pickCat);
+    const back = el(`<div class="crumb"><button type="button" class="crumb__back">&lsaquo; ${esc(t('services.browseAll'))}</button>
+      <span class="crumb__here" style="--cat:var(--c-${esc(cat.id)})">${esc(en ? cat.en : cat.sv)}</span></div>`);
+    back.querySelector('button').onclick = () => { state.pickCat = null; render(); };
+    box.appendChild(back);
+    box.appendChild(rows(list));
+    return box;
+  }
+
+  const grid = el('<div class="catgrid catgrid--wizard"></div>');
+  for (const c of CATEGORIES) {
+    const list = SERVICES.filter((s) => s.category === c.id);
+    if (!list.length) continue;
+    const card = el(`
+      <button type="button" class="catcard" style="--cat:var(--c-${esc(c.id)})">
+        <span class="catcard__icon">${serviceIcon({ category: c.id, id: '' })}</span>
+        <span class="catcard__name">${esc(en ? c.en : c.sv)}</span>
+        <span class="catcard__meta">${esc(list.length === 1 ? t('services.count1') : t('services.count', { n: list.length }))}</span>
+        <span class="catcard__from">${esc(t('services.fromPrice', { p: Math.min(...list.map((x) => x.price)) }))}</span>
+      </button>`);
+    card.onclick = () => { state.pickCat = c.id; render(); };
+    grid.appendChild(card);
+  }
+  box.appendChild(grid);
   return box;
+}
+
+function pickItem(s) {
+  const btn = el(`
+    <button type="button" class="pickitem" style="--cat:var(--c-${esc(s.category)})"
+            aria-pressed="${state.service?.id === s.id}">
+      <span><b>${esc(sname(s))}${s.package ? `<span class="srv__tag">${esc(t('services.package'))}</span>` : ''}</b><small>${esc(humanDuration(s.duration))}</small></span>
+      <i>${s.from ? `<em>${esc(t('services.from'))}</em> ` : ''}${s.price} kr</i>
+    </button>`);
+  btn.onclick = () => {
+    state.service = s;
+    state.date = null;
+    state.startMin = null;
+    state.step = 2;
+    render();
+    loadMonth();
+  };
+  return btn;
 }
 
 // step 2 — pick a date
@@ -435,7 +510,8 @@ function stepDone() {
 
   const again = el(`<button type="button" class="btn btn--ghost">${esc(t('booking.bookAnother'))}</button>`);
   again.onclick = () => {
-    Object.assign(state, { step: 1, service: null, date: null, startMin: null, result: null, error: null, form: null });
+    Object.assign(state, { step: 1, service: null, date: null, startMin: null,
+                           result: null, error: null, form: null, pickCat: null, pickQuery: '' });
     render();
   };
   btns.appendChild(again);
